@@ -1,7 +1,7 @@
 function Page() {
     return ( 
         <>
-        <div> <p> The about page</p></div>
+        <div> <p> The adventure page </p></div>
         </>
      );
 }

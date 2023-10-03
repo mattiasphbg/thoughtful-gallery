@@ -1,6 +1,10 @@
 import React from 'react';
 
-const Footer = () => {
+interface FooterProps {
+  companyName: string;
+}
+
+const Footer: React.FC<FooterProps> =  ({companyName}) => {
   return (
     <footer className="flex flex-col items-center bg-neutral-200 text-center text-white dark:bg-neutral-600">
       <div className="container pt-9">
@@ -77,7 +81,7 @@ const Footer = () => {
           className="text-neutral-800 dark:text-neutral-400"
           href="https://tailwind-elements.com/"
         >
-          Tailwind Elements
+          {companyName}
         </a>
       </div>
     </footer>
