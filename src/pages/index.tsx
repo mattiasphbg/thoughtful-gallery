@@ -2,6 +2,8 @@ import type { ReactElement } from 'react'
 import Layout from '../components/layout'
 import NestedLayout from '../components/nested-layout'
 import type { NextPageWithLayout } from './_app'
+import Image from 'next/image'
+
  
 
 // import { api } from "~/utils/api";
@@ -9,7 +11,15 @@ import type { NextPageWithLayout } from './_app'
 
  
 const Page: NextPageWithLayout = () => {
-  return <p>hello world</p>
+  return (
+    <>
+      <div className="flex justify-center items-center h-screen">
+    
+    <p className="text-xl text-center">To my dear Magda i love you ❤️:  </p>
+    <Image src="https://res.cloudinary.com/dxhfq1g84/image/upload/v1696361128/thumbnail_Screenshot_20230928_131609_WhatsApp_zsmszl.jpg" className='w-52 h-52' alt="" />
+  </div>
+    </>
+  )
 }
  
 Page.getLayout = function getLayout(page: ReactElement) {
