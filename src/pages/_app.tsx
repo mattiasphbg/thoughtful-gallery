@@ -23,3 +23,4 @@ type AppPropsWithLayout = AppProps & {
   return getLayout(<Component {...pageProps} />)
 }
 export default api.withTRPC(MyApp);
+
