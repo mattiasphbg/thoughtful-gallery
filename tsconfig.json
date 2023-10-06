@@ -5,6 +5,7 @@
     "allowJs": true,
     "checkJs": true,
     "skipLibCheck": true,
+    "allowImportingTsExtensions": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,

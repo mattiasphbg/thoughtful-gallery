@@ -1,10 +1,11 @@
-import type { ReactElement, ReactNode } from 'react'
 import type { NextPage } from 'next'
+import type { ReactElement, ReactNode } from 'react'
 import type { AppProps } from 'next/app'
 
 
 import { api } from "~/utils/api";
 import "~/styles/globals.css";
+
 
 
 
@@ -20,7 +21,12 @@ type AppPropsWithLayout = AppProps & {
   // Use the layout defined at the page level, if available
   const getLayout = Component.getLayout ?? ((page) => page)
  
-  return getLayout(<Component {...pageProps} />)
+  return  getLayout(
+  
+      
+        <Component {...pageProps}/>
+    
+)
 }
 export default api.withTRPC(MyApp);
 
