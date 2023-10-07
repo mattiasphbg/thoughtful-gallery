@@ -1,9 +1,9 @@
 import type { ReactElement } from 'react'
-import Layout from '../components/layout'
+// import Layout from '../components/layout'
 import NestedLayout from '../components/nested-layout'
 import type { NextPageWithLayout } from './_app'
 import { useSpring, animated } from '@react-spring/web'
-import {ModeToggle} from '../components/ui/darkmodeToggle'
+import RootLayout from '~/components/rootLayot'
  
 
 // import { api } from "~/utils/api";
@@ -30,7 +30,7 @@ const Page: NextPageWithLayout = () => {
   return (
     <>
 
-       <ModeToggle/>
+       
       
 
        <animated.div
@@ -54,9 +54,9 @@ const Page: NextPageWithLayout = () => {
  
 Page.getLayout = function getLayout(page: ReactElement) {
   return (
-    <Layout>
+    <RootLayout>
       <NestedLayout>{page}</NestedLayout>
-    </Layout>
+    </RootLayout>
   )
 }
  
