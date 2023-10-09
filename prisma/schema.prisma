@@ -19,3 +19,17 @@ model Example {
 
     @@index([name])
 }
+
+model Routes {
+    id Int @id @default(autoincrement())
+    route String
+    layer Layers? 
+    @@index([route])
+}
+
+enum Layers {
+    ONE
+    TWO
+    THREE
+}
+
