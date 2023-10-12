@@ -11,25 +11,59 @@ generator client {
     provider = "prisma-client-js"
 }
 
-model Example {
-    id        Int      @id @default(autoincrement())
-    name      String
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
 
-    @@index([name])
+model User {
+  id       Int      @id @default(autoincrement())
+  name     String
+  email    String
+  jobTitle String
+  posts    Post[]
+  profile  Profile?
 }
+
+model Profile {
+  id       Int    @id @default(autoincrement())
+  biograpy String // Intentional typo!
+  userId   Int    @unique
+  user     User   @relation(fields: [userId], references: [id])
+}
+
+model Post {
+  id         Int        @id @default(autoincrement())
+  title      String
+  published  Boolean    @default(true)
+  content    String     @db.VarChar(500)
+  authorId   Int
+  author     User       @relation(fields: [authorId], references: [id])
+  categories Category[]
+}
+
+model Category {
+  id    Int    @id @default(autoincrement())
+  name  String @db.VarChar(50)
+  posts Post[]
+
+  @@unique([name])
+}
+
 
 model Routes {
     id Int @id @default(autoincrement())
     route String
     layer Layers? 
-    @@index([route])
+    title String @default("")
+    
 }
 
 enum Layers {
     ONE
     TWO
     THREE
+}
+
+enum Role {
+    ADMIN
+    USER
+    EDITOR
 }
 

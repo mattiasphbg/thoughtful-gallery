@@ -2,26 +2,13 @@ import type { ReactElement } from 'react'
 // import Layout from '../components/layout'
 import NestedLayout from '../components/nested-layout'
 import type { NextPageWithLayout } from './_app'
-import { useSpring, animated } from '@react-spring/web'
+// import { useSpring, animated } from '@react-spring/web'
 import RootLayout from '~/components/rootLayot'
 
 // import { api } from "~/utils/api";
 
 const Page: NextPageWithLayout = () => {
-  const [springs, api] = useSpring(() => ({
-    from: { x: 0 },
-  }))
-
-  const handleClick = () => {
-    api.start({
-      from: {
-        x: 0,
-      },
-      to: {
-        x: 100,
-      },
-    })
-  }
+  
 
   return (
     <>
@@ -47,6 +34,11 @@ const Page: NextPageWithLayout = () => {
           Ready for a new adventure?
         </h5>
       </div>
+
+     
+
+
+
     </>
   )
 }
