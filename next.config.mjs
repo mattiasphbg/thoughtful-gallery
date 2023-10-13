@@ -4,6 +4,8 @@
  */
 await import("./src/env.mjs");
 
+const imageDomains = ["cdn1.iconfinder.com"];
+
 /** @type {import("next").NextConfig} */
 const config = {
   reactStrictMode: true,
@@ -16,6 +18,9 @@ const config = {
   i18n: {
     locales: ["en"],
     defaultLocale: "en",
+  },
+  images: {
+    domains: imageDomains,
   },
 };
 
