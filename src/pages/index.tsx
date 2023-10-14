@@ -12,7 +12,7 @@ const Page: NextPageWithLayout = () => {
   return (
     <>
       <section>
-        <div className=" relative">
+        <div className="relative">
           <video
             autoPlay
             muted
@@ -37,7 +37,14 @@ const Page: NextPageWithLayout = () => {
 
         <ModeToggle />
       </section>
-      <section className=""></section>
+
+      <section>
+        <p>Content of the second section</p>
+      </section>
+
+      <section>
+        <div>Content of the third section</div>
+      </section>
     </>
   );
 };
