@@ -1,11 +1,7 @@
 interface Props {
-  children: React.ReactNode
+  children: React.ReactNode;
 }
 
 export default function nestedLayout({ children }: Props) {
-  return (
-    <>
-      <main>{children}</main>
-    </>
-  )
+  return <>{children}</>;
 }
