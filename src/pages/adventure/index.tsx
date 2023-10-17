@@ -2,12 +2,12 @@ import type { ReactElement } from "react";
 import Layout from "../../components/layout";
 import NestedLayout from "../../components/nested-layout";
 import type { NextPageWithLayout } from "../_app";
-import Background from "~/components/ui/twoDBackground";
+import MyTwoCanvas from "~/components/ui/twoDBackground";
 const Page: NextPageWithLayout = () => {
   return (
     <>
       <section className=" h-screen">
-        <Background />
+        <MyTwoCanvas />
       </section>
 
       <section className="h-screen">
