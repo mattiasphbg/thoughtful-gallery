@@ -11,7 +11,7 @@ function MyTwoCanvas() {
   return (
     <>
       <div className="container w-full">
-        <Stage width={2000} height={2000}>
+        <Stage width={window.innerWidth} height={window.innerHeight}>
           <Layer>
             <Image x={20} y={20} image={image} draggable alt="Something" />
             <Rect x={20} y={20} width={100} height={50} fill="red" draggable />
