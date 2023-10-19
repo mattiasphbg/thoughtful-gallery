@@ -1,12 +1,19 @@
 import React from "react";
-import { Stage, Layer, Rect } from "react-konva";
+React.useLayoutEffect = React.useEffect;
+import { Stage, Layer, Rect, Image } from "react-konva";
+import useImage from "use-image";
+
+const url = "https://konvajs.github.io/assets/yoda.jpg";
 
 function MyTwoCanvas() {
+  const [image] = useImage(url);
+
   return (
     <>
-      <div className="container">
-        <Stage width={600} height={400}>
+      <div className="container w-full">
+        <Stage width={2000} height={2000}>
           <Layer>
+            <Image x={20} y={20} image={image} draggable alt="Something" />
             <Rect x={20} y={20} width={100} height={50} fill="red" draggable />
           </Layer>
         </Stage>

@@ -7,9 +7,7 @@ const Page: NextPageWithLayout = () => {
   return (
     <>
       <section className=" h-screen">
-        <div className="container">
-          <MyTwoCanvas />
-        </div>
+        <MyTwoCanvas />
       </section>
 
       <section className="h-screen">
