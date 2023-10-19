@@ -1,37 +1,18 @@
-import React, { useRef, useEffect } from "react";
-import Two from "two.js";
+import React from "react";
+import { Stage, Layer, Rect } from "react-konva";
 
 function MyTwoCanvas() {
-  const twoRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const two = new Two({
-      fullscreen: true,
-      autostart: true,
-    }).appendTo(twoRef.current as HTMLElement);
-
-    const rect = two.makeRectangle(two.width / 2, two.height / 2, 200, 100);
-    rect.fill = "#FF0000";
-    const img = two.makeTexture("");
-
-    two.add(rect);
-
-    const update = () => {
-      rect.rotation += 0.01;
-      two.render();
-      requestAnimationFrame(update);
-    };
-
-    update();
-
-    return () => {
-      // Clean up Two.js instance
-      two.pause();
-      two.clear();
-    };
-  }, []);
-
-  return <div ref={twoRef} />;
+  return (
+    <>
+      <div className="container">
+        <Stage width={600} height={400}>
+          <Layer>
+            <Rect x={20} y={20} width={100} height={50} fill="red" draggable />
+          </Layer>
+        </Stage>
+      </div>
+    </>
+  );
 }
 
 export default MyTwoCanvas;
