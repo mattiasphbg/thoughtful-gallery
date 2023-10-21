@@ -1,4 +1,5 @@
 import type { ReactElement } from "react";
+import Image from "next/image";
 import Layout from "../../components/layout";
 import NestedLayout from "../../components/nested-layout";
 import type { NextPageWithLayout } from "../_app";
@@ -29,16 +30,13 @@ const Page: NextPageWithLayout = () => {
           </form>
           <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
             <div className="flex flex-col items-start space-y-4">
-              <img
+              <Image
                 alt="Placeholder"
                 className="w-full rounded-lg object-cover shadow-lg"
-                height="250"
+                height={250}
+                width={400}
                 src="/placeholder.svg"
-                style={{
-                  aspectRatio: "400/250",
-                  objectFit: "cover",
-                }}
-                width="400"
+                objectFit="cover"
               />
               <h2 className="text-2xl font-bold">Article Title</h2>
               <p className="text-zinc-500">
@@ -48,16 +46,13 @@ const Page: NextPageWithLayout = () => {
               <Button variant="outline">Read more</Button>
             </div>
             <div className="flex flex-col items-start space-y-4">
-              <img
+              <Image
                 alt="Placeholder"
                 className="w-full rounded-lg object-cover shadow-lg"
-                height="250"
+                height={250}
+                width={400}
                 src="/placeholder.svg"
-                style={{
-                  aspectRatio: "400/250",
-                  objectFit: "cover",
-                }}
-                width="400"
+                objectFit="cover"
               />
               <h2 className="text-2xl font-bold">Article Title</h2>
               <p className="text-zinc-500">
@@ -67,16 +62,13 @@ const Page: NextPageWithLayout = () => {
               <Button variant="outline">Read more</Button>
             </div>
             <div className="flex flex-col items-start space-y-4">
-              <img
+              <Image
                 alt="Placeholder"
                 className="w-full rounded-lg object-cover shadow-lg"
-                height="250"
+                height={250}
+                width={400}
                 src="/placeholder.svg"
-                style={{
-                  aspectRatio: "400/250",
-                  objectFit: "cover",
-                }}
-                width="400"
+                objectFit="cover"
               />
               <h2 className="text-2xl font-bold">Article Title</h2>
               <p className="text-zinc-500">
