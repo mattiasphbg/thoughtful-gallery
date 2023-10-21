@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { api } from "~/utils/api";
-import { Layers } from "@prisma/client";
+import type { Layers } from "@prisma/client";
 import Image from "next/image";
 
 type urlType = {
@@ -41,7 +41,7 @@ const Header: React.FC = () => {
 
             {/* Navigation links */}
             <div
-              className="!visible absolute bottom-2/4 left-2/4 top-1/2 flex hidden basis-[100%] -translate-x-1/2 transform lg:!flex lg:basis-auto"
+              className="!visible absolute bottom-2/4 left-2/4 top-1/2 flex basis-[100%] -translate-x-1/2 transform lg:!flex lg:basis-auto"
               id="navbarSupportedContentX"
               data-te-collapse-item
             >
