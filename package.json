@@ -1,6 +1,6 @@
 {
   "name": "thoughtful-gallery",
-  "version": "0.1.0",
+  "version": "0.3.0",
   "private": true,
   "scripts": {
     "build": "next build",
@@ -60,6 +60,5 @@
   },
   "ct3aMetadata": {
     "initVersion": "7.20.2"
-  },
-  "packageManager": "npm@8.19.1"
+  }
 }
