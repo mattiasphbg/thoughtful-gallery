@@ -3,12 +3,12 @@ import Layout from "../../components/layout";
 import NestedLayout from "../../components/nested-layout";
 import type { NextPageWithLayout } from "../_app";
 
-import { Button } from "~/components/ui/button";
+import { Button } from "../../components/ui/button";
 
 const Page: NextPageWithLayout = () => {
   return (
     <>
-      <Button variant="outline">Read more</Button>
+      <Button>Read more</Button>
     </>
   );
 };
