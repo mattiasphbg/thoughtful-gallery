@@ -1,17 +1,15 @@
 import type { ReactElement } from "react";
-/* import Image from "next/image"; */
+import Image from "next/image";
 import Layout from "../../components/layout";
 import NestedLayout from "../../components/nested-layout";
 import type { NextPageWithLayout } from "../_app";
-/* import { Input } from "~/components/ui/input";
-import { Button } from "~/components/ui/button"; */
-
-// import { api } from "~/utils/api";
+import { Input } from "~/components/ui/input";
+import { Button } from "~/components/ui/button";
 
 const Page: NextPageWithLayout = () => {
   return (
     <>
-      {/*    <section className="w-full py-8 md:py-16 lg:py-24">
+      <section className="w-full py-8 md:py-16 lg:py-24">
         <div className="container mx-auto max-w-5xl px-4 md:px-6 lg:px-8">
           <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl">
             News
@@ -24,7 +22,7 @@ const Page: NextPageWithLayout = () => {
               className="flex-1"
               placeholder="Search articles"
               type="text"
-              customprops=""
+              customprops="Hello"
             />
             <Button type="submit">Search</Button>
           </form>
@@ -35,7 +33,7 @@ const Page: NextPageWithLayout = () => {
                 className="w-full rounded-lg object-cover shadow-lg"
                 height={250}
                 width={400}
-                src="/placeholder.svg"
+                src="https://t4.ftcdn.net/jpg/04/73/25/49/360_F_473254957_bxG9yf4ly7OBO5I0O5KABlN930GwaMQz.jpg"
                 objectFit="cover"
               />
               <h2 className="text-2xl font-bold">Article Title</h2>
@@ -51,7 +49,7 @@ const Page: NextPageWithLayout = () => {
                 className="w-full rounded-lg object-cover shadow-lg"
                 height={250}
                 width={400}
-                src="/placeholder.svg"
+                src="https://t4.ftcdn.net/jpg/04/73/25/49/360_F_473254957_bxG9yf4ly7OBO5I0O5KABlN930GwaMQz.jpg"
                 objectFit="cover"
               />
               <h2 className="text-2xl font-bold">Article Title</h2>
@@ -67,7 +65,7 @@ const Page: NextPageWithLayout = () => {
                 className="w-full rounded-lg object-cover shadow-lg"
                 height={250}
                 width={400}
-                src="/placeholder.svg"
+                src="https://t4.ftcdn.net/jpg/04/73/25/49/360_F_473254957_bxG9yf4ly7OBO5I0O5KABlN930GwaMQz.jpg"
                 objectFit="cover"
               />
               <h2 className="text-2xl font-bold">Article Title</h2>
@@ -83,12 +81,12 @@ const Page: NextPageWithLayout = () => {
               className="flex-1"
               placeholder="Subscribe for more updates"
               type="email"
-              customprops=""
+              customprops="gello"
             />
             <Button type="submit">Subscribe</Button>
           </form>
         </div>
-      </section> */}
+      </section>
     </>
   );
 };
