@@ -22,7 +22,6 @@ const Page: NextPageWithLayout = () => {
               className="flex-1"
               placeholder="Search articles"
               type="text"
-              customprops="Hello"
             />
             <Button type="submit">Search</Button>
           </form>
@@ -81,7 +80,6 @@ const Page: NextPageWithLayout = () => {
               className="flex-1"
               placeholder="Subscribe for more updates"
               type="email"
-              customprops="gello"
             />
             <Button type="submit">Subscribe</Button>
           </form>
