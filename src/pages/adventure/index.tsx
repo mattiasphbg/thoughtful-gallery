@@ -11,7 +11,7 @@ const Page: NextPageWithLayout = () => {
       </section>
 
       <section className="h-screen">
-        <div>Content of the third section</div>
+        <div>Content of the third sections</div>
       </section>
     </>
   );
