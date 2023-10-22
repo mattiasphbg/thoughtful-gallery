@@ -3,8 +3,14 @@ import Layout from "../../components/layout";
 import NestedLayout from "../../components/nested-layout";
 import type { NextPageWithLayout } from "../_app";
 
+import { Button } from "~/components/ui/button";
+
 const Page: NextPageWithLayout = () => {
-  return <></>;
+  return (
+    <>
+      <Button variant="outline">Read more</Button>
+    </>
+  );
 };
 
 Page.getLayout = function getLayout(page: ReactElement) {
