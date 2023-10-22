@@ -17,15 +17,14 @@ const Page: NextPageWithLayout = () => {
           <p className="mt-2 text-lg text-zinc-500 md:text-xl lg:text-2xl">
             Stay updated with the latest news from our museum
           </p>
-          <form className="mt-6 flex space-x-4">
+          {/*      <form className="mt-6 flex space-x-4">
             <Input
               className="flex-1"
               placeholder="Search articles"
               type="text"
-              customprops="Hello"
             />
             <Button type="submit">Search</Button>
-          </form>
+          </form> */}
           <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
             <div className="flex flex-col items-start space-y-4">
               <Image
@@ -76,15 +75,14 @@ const Page: NextPageWithLayout = () => {
               <Button variant="outline">Read more</Button>
             </div>
           </div>
-          <form className="mt-10 flex space-x-4">
+          {/*      <form className="mt-10 flex space-x-4">
             <Input
               className="flex-1"
               placeholder="Subscribe for more updates"
               type="email"
-              customprops="Hello"
             />
             <Button type="submit">Subscribe</Button>
-          </form>
+          </form> */}
         </div>
       </section>
     </>
