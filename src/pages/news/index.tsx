@@ -81,7 +81,7 @@ const Page: NextPageWithLayout = () => {
               className="flex-1"
               placeholder="Subscribe for more updates"
               type="email"
-              customprops="gello"
+              customprops="Hello"
             />
             <Button type="submit">Subscribe</Button>
           </form>
