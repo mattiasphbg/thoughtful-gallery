@@ -1,17 +1,10 @@
-import { ReactElement } from "react";
-import Image from "next/image";
+import type { ReactElement } from "react";
 import Layout from "../../components/layout";
 import NestedLayout from "../../components/nested-layout";
-import { NextPageWithLayout } from "../_app";
-import { Input } from "~/components/ui/input";
-import { Button } from "~/components/ui/button";
+import type { NextPageWithLayout } from "../_app";
 
 const Page: NextPageWithLayout = () => {
-  return (
-    <>
-      <Input />
-    </>
-  );
+  return <></>;
 };
 
 Page.getLayout = function getLayout(page: ReactElement) {
