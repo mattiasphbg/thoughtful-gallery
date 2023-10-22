@@ -33,7 +33,7 @@ model Post {
   title      String
   published  Boolean    @default(true)
   content    String     @db.VarChar(500)
-  authorId   Int
+  authorId   Int        @unique
   author     User       @relation(fields: [authorId], references: [id])
   categories Category[]
 }
@@ -70,4 +70,6 @@ enum Role {
 model Image {
   id Int @id @default(autoincrement())
   url String @default("https://cdn.vectorstock.com/i/preview-1x/65/30/default-image-icon-missing-picture-page-vector-40546530.jpg")
+  alt String?
+  category String?
 }
