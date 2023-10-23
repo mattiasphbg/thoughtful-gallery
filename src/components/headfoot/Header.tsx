@@ -2,6 +2,7 @@ import Link from "next/link";
 import { api } from "~/utils/api";
 import type { Layers } from "@prisma/client";
 import Image from "next/image";
+import { UserButton } from "@clerk/nextjs";
 
 type urlType = {
   id: number;
@@ -17,7 +18,6 @@ const Header: React.FC = () => {
     <>
       <header className="flex items-center justify-center">
         {/* Navigation bar */}
-
         <nav
           className="relative flex w-full items-center justify-between bg-white py-2 text-neutral-600 shadow-lg hover:text-neutral-700 focus:text-neutral-700 dark:bg-neutral-600 dark:text-neutral-200 md:flex-wrap md:justify-center"
           data-te-navbar-ref
@@ -68,6 +68,7 @@ const Header: React.FC = () => {
                 ))}
               </ul>
             </div>
+            <UserButton afterSignOutUrl="/" />
           </div>
         </nav>
       </header>

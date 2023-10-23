@@ -12,7 +12,6 @@ export default function Layout({ children }: Props) {
     <>
       <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
         <div className="flex min-h-screen flex-col">
-          <Header />
           <main className="min-h-screen-minus-footer flex-grow ">
             {children}
           </main>
