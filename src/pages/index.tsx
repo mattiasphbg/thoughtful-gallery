@@ -1,5 +1,5 @@
 import type { ReactElement } from "react";
-// import Layout from '../components/layout'
+import Layout from "../components/layout";
 import NestedLayout from "../components/nested-layout";
 import type { NextPageWithLayout } from "./_app";
 // import { useSpring, animated } from '@react-spring/web'
@@ -11,6 +11,7 @@ import { ModeToggle } from "~/components/ui/darkmodeToggle";
 const Page: NextPageWithLayout = () => {
   return (
     <>
+      <ModeToggle />
       <section className="h-screen">
         <div className="relative">
           <video
@@ -34,8 +35,6 @@ const Page: NextPageWithLayout = () => {
             Ready for a new adventure?
           </h5>
         </div>
-
-        <ModeToggle />
       </section>
 
       <section className="h-screen">
@@ -213,7 +212,6 @@ const Page: NextPageWithLayout = () => {
                   className="text-md font-medium hover:underline dark:text-gray-100"
                 >
                   Doloribus sit illo necessitatibus architecto exercitationem
-                  enim
                 </a>
               </h2>
             </div>
