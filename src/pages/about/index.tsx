@@ -28,14 +28,13 @@ const Page: NextPageWithLayout = () => {
             <div className="text-center">
               <Image
                 alt="Team member"
-                className="mx-auto mb-2 rounded-full"
+                className="mx-auto mb-2 rounded-full object-cover "
                 height={100}
-                src="/placeholder.svg"
-                objectFit="cover"
+                src="https://res.cloudinary.com/dxhfq1g84/image/upload/v1698076623/magda_yorora.jpg"
                 width={100}
               />
-              <h3 className="font-bold">Jane Doe</h3>
-              <p className="text-gray-500">Curator</p>
+              <h3 className="font-bold">Magdalena Pramitha</h3>
+              <p className="text-gray-500">Researcher</p>
             </div>
             <div className="text-center">
               <Image

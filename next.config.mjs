@@ -4,7 +4,7 @@
  */
 await import("./src/env.mjs");
 
-const imageDomains = ["cdn1.iconfinder.com"];
+const imageDomains = ["cdn1.iconfinder.com", "res.cloudinary.com"];
 
 /** @type {import("next").NextConfig} */
 const config = {
