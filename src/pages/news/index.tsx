@@ -6,6 +6,7 @@ import { Input } from "~/components/ui/input";
 import { Button } from "~/components/ui/button";
 import { ModeToggle } from "~/components/ui/darkmodeToggle";
 import RootLayout from "~/components/rootLayot";
+import Image from "next/image";
 
 // import { api } from "~/utils/api";
 
@@ -13,6 +14,7 @@ const Page: NextPageWithLayout = () => {
   return (
     <div>
       <ModeToggle />
+
       <section className="w-full py-8 md:py-16 lg:py-24">
         <div className="container mx-auto max-w-5xl px-4 md:px-6 lg:px-8">
           <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl">
@@ -31,16 +33,16 @@ const Page: NextPageWithLayout = () => {
           </form>
           <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
             <div className="flex flex-col items-start space-y-4">
-              <img
+              <Image
                 alt="Placeholder"
                 className="w-full rounded-lg object-cover shadow-lg"
-                height="250"
+                height={250}
                 src="/placeholder.svg"
                 style={{
                   aspectRatio: "400/250",
                   objectFit: "cover",
                 }}
-                width="400"
+                width={400}
               />
               <h2 className="text-2xl font-bold">Article Title</h2>
               <p className="text-zinc-500">
@@ -50,16 +52,16 @@ const Page: NextPageWithLayout = () => {
               <Button variant="outline">Read more</Button>
             </div>
             <div className="flex flex-col items-start space-y-4">
-              <img
+              <Image
                 alt="Placeholder"
                 className="w-full rounded-lg object-cover shadow-lg"
-                height="250"
+                height={250}
                 src="/placeholder.svg"
                 style={{
                   aspectRatio: "400/250",
                   objectFit: "cover",
                 }}
-                width="400"
+                width={400}
               />
               <h2 className="text-2xl font-bold">Article Title</h2>
               <p className="text-zinc-500">
@@ -69,16 +71,16 @@ const Page: NextPageWithLayout = () => {
               <Button variant="outline">Read more</Button>
             </div>
             <div className="flex flex-col items-start space-y-4">
-              <img
+              <Image
                 alt="Placeholder"
                 className="w-full rounded-lg object-cover shadow-lg"
-                height="250"
+                height={250}
                 src="/placeholder.svg"
                 style={{
                   aspectRatio: "400/250",
                   objectFit: "cover",
                 }}
-                width="400"
+                width={400}
               />
               <h2 className="text-2xl font-bold">Article Title</h2>
               <p className="text-zinc-500">

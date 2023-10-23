@@ -1,12 +1,8 @@
 import type { ReactElement } from "react";
-import Layout from "../components/layout";
 import NestedLayout from "../components/nested-layout";
 import type { NextPageWithLayout } from "./_app";
-// import { useSpring, animated } from '@react-spring/web'
 import RootLayout from "~/components/rootLayot";
 import { ModeToggle } from "~/components/ui/darkmodeToggle";
-
-// import { api } from "~/utils/api";
 
 const Page: NextPageWithLayout = () => {
   return (
