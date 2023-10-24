@@ -1,95 +1,67 @@
 import type { ReactElement } from "react";
+// import Link from "next/link";
 import Layout from "../../components/layout";
 import NestedLayout from "../../components/nested-layout";
 import type { NextPageWithLayout } from "../_app";
-import { Textarea } from "~/components/ui/textarea";
-import { Label } from "~/components/ui/label";
-import { Button } from "~/components/ui/button";
-import Image from "next/image";
-import { Input } from "~/components/ui/input";
 
 const Page: NextPageWithLayout = () => {
   return (
     <>
-      <section className="p-6 md:p-12">
-        <div className="mx-auto max-w-4xl">
-          <h1 className="mb-4 text-4xl font-bold">About Us</h1>
-          <p className="mb-8 text-lg leading-relaxed">
-            Welcome to our virtual museum. We are dedicated to bringing the
-            experience of a physical museum into your digital space. Our mission
-            is to make art and historical artifacts accessible to everyone,
-            regardless of location. Since our founding in 2020, we have strived
-            to curate and present high-quality digital reproductions of
-            significant works of art and historical artifacts from around the
-            world.
+      <section className="flex h-screen flex-col justify-between">
+        <main className="flex flex-col gap-8 p-6 md:p-12">
+          <h1 className="text-3xl font-bold md:text-5xl">About the Museum</h1>
+          <p className="text-gray-600 dark:text-gray-300">
+            The Virtual Museum was established in 2023 with the aim of making
+            art and history accessible to all, regardless of geography or
+            mobility. Our mission is to inspire and educate through the digital
+            representation of valuable artworks and historic artifacts.
           </p>
-          <h2 className="mb-4 text-3xl font-bold">Our Team</h2>
-          <div className="mb-8 grid gap-6 md:grid-cols-3">
-            <div className="text-center">
-              <Image
-                alt="Team member"
-                className="mx-auto mb-2 rounded-full object-cover "
-                height={100}
-                src="https://res.cloudinary.com/dxhfq1g84/image/upload/v1698076623/magda_yorora.jpg"
-                width={100}
-              />
-              <h3 className="font-bold">Magdalena Pramitha</h3>
-              <p className="text-gray-500">Researcher</p>
-            </div>
-            <div className="text-center">
-              <Image
-                alt="Team member"
-                className="mx-auto mb-2 rounded-full"
-                height={100}
+          <p className="text-gray-600 dark:text-gray-300">
+            The museum exhibits a vast range of artworks and historic artifacts
+            from all around the world. Every piece in our collection has been
+            meticulously digitized and curated to provide a rich and immersive
+            experience for our visitors.
+          </p>
+          <section className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <div className="flex flex-col gap-4">
+              <img
+                alt="Artwork 1"
+                className="aspect-square w-full overflow-hidden rounded-lg border border-zinc-200 object-cover dark:border-zinc-800"
+                height={200}
                 src="/placeholder.svg"
-                objectFit="cover"
-                width={100}
+                width={400}
               />
-              <h3 className="font-bold">John Smith</h3>
-              <p className="text-gray-500">Art Historian</p>
+              <h2 className="text-xl font-bold">Artwork 1</h2>
+              <p className="text-gray-600 dark:text-gray-300">
+                This is a description of Artwork 1.
+              </p>
             </div>
-            <div className="text-center">
-              <Image
-                alt="Team member"
-                className="mx-auto mb-2 rounded-full"
-                height={100}
+            <div className="flex flex-col gap-4">
+              <img
+                alt="Artwork 2"
+                className="aspect-square w-full overflow-hidden rounded-lg border border-zinc-200 object-cover dark:border-zinc-800"
+                height={200}
                 src="/placeholder.svg"
-                objectFit="cover"
-                width={100}
+                width={400}
               />
-              <h3 className="font-bold">Emily Johnson</h3>
-              <p className="text-gray-500">Marketing Director</p>
+              <h2 className="text-xl font-bold">Artwork 2</h2>
+              <p className="text-gray-600 dark:text-gray-300">
+                This is a description of Artwork 2.
+              </p>
             </div>
-          </div>
-          <h2 className="mb-4 text-3xl font-bold">Contact Us</h2>
-          <form className="grid gap-4">
-            <div>
-              <Label className="text-base" htmlFor="name">
-                Name
-              </Label>
-              <Input id="name" placeholder="Enter your name" />
-            </div>
-            <div>
-              <Label className="text-base" htmlFor="email">
-                Email
-              </Label>
-              <Input id="email" placeholder="Enter your email" type="email" />
-            </div>
-            <div>
-              <Label className="text-base" htmlFor="message">
-                Message
-              </Label>
-              <Textarea
-                id="message"
-                placeholder="Enter your message"
-                rows={4}
+            <div className="flex flex-col gap-4">
+              <img
+                alt="Artwork 3"
+                className="aspect-square w-full overflow-hidden rounded-lg border border-zinc-200 object-cover dark:border-zinc-800"
+                src="/placeholder.svg"
               />
+              <h2 className="text-xl font-bold">Artwork 3</h2>
+              <p className="text-gray-600 dark:text-gray-300">
+                This is a description of Artwork 3.
+              </p>
             </div>
-            <Button className="w-full md:w-auto" type="submit">
-              Submit
-            </Button>
-          </form>
-        </div>
+          </section>
+        </main>
       </section>
     </>
   );

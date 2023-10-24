@@ -4,7 +4,6 @@ import NestedLayout from "../../components/nested-layout";
 import type { NextPageWithLayout } from "../_app";
 import { Input } from "~/components/ui/input";
 import { Button } from "~/components/ui/button";
-import { ModeToggle } from "~/components/ui/darkmodeToggle";
 import RootLayout from "~/components/rootLayot";
 import Image from "next/image";
 
@@ -13,8 +12,6 @@ import Image from "next/image";
 const Page: NextPageWithLayout = () => {
   return (
     <div>
-      <ModeToggle />
-
       <section className="w-full py-8 md:py-16 lg:py-24">
         <div className="container mx-auto max-w-5xl px-4 md:px-6 lg:px-8">
           <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl">

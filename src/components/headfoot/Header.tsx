@@ -1,75 +1,60 @@
 import Link from "next/link";
-import { api } from "~/utils/api";
-import type { Layers } from "@prisma/client";
-import Image from "next/image";
+// import { api } from "~/utils/api";
+// import type { Layers } from "@prisma/client";
+// import Image from "next/image";
 import { UserButton } from "@clerk/nextjs";
 
-type urlType = {
-  id: number;
-  route: string;
-  layer: Layers | null;
-  title: string;
-};
+// type urlType = {
+//   id: number;
+//   route: string;
+//   layer: Layers | null;
+//   title: string;
+// };
 
 const Header: React.FC = () => {
-  const { data: d } = api.url.getAll.useQuery<urlType[]>();
+  // const { data: d } = api.url.getAll.useQuery<urlType[]>();
+
+  const navLinks = [
+    { id: 1, href: "/adventure", title: "Adventures" },
+    { id: 2, href: "/news", title: "News" },
+    { id: 3, href: "/about", title: "About" },
+    { id: 4, href: "/feedback", title: "Contact" },
+  ];
 
   return (
     <>
-      <header className="flex items-center justify-center">
-        {/* Navigation bar */}
-        <nav
-          className="relative flex w-full items-center justify-between bg-white py-2 text-neutral-600 shadow-lg hover:text-neutral-700 focus:text-neutral-700 dark:bg-neutral-600 dark:text-neutral-200 md:flex-wrap md:justify-center"
-          data-te-navbar-ref
-        >
-          <div className="flex w-full flex-wrap items-center  justify-between px-3 text-center">
+      <header className="flex h-14 items-center justify-between px-4 lg:px-6">
+        <Link className="flex items-center justify-center" href="/">
+          <svg
+            className=" h-6 w-6"
+            fill="none"
+            height="24"
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="m16 6 4 14" />
+            <path d="M12 6v14" />
+            <path d="M8 8v12" />
+            <path d="M4 4v16" />
+          </svg>
+          <span className="sr-only">Virtual Museum</span>
+        </Link>
+        <nav className="ml-auto flex gap-4 sm:gap-6">
+          {navLinks.map((link) => (
             <Link
-              href="/"
-              className=" block object-left-top transition duration-150 ease-in-out hover:text-neutral-700 focus:text-neutral-700 disabled:text-black/30 dark:hover:text-white dark:focus:text-white lg:p-2 [&.active]:text-black/90"
-              data-te-nav-link-ref
-              data-te-ripple-init
-              data-te-ripple-color="light"
+              key={link.id}
+              className="text-sm font-medium underline-offset-4 hover:underline"
+              href={link.href}
             >
-              <Image
-                src="https://cdn1.iconfinder.com/data/icons/logos-and-brands-3/512/84_Dev_logo_logos-512.png"
-                alt="Logo"
-                className=""
-                width={25}
-                height={25}
-              />
+              {link.title}
             </Link>
-
-            {/* Navigation links */}
-            <div
-              className="!visible absolute bottom-2/4 left-2/4 top-1/2 flex basis-[100%] -translate-x-1/2 transform lg:!flex lg:basis-auto"
-              id="navbarSupportedContentX"
-              data-te-collapse-item
-            >
-              <ul
-                className="mr-auto flex flex-col items-center justify-center lg:flex-row"
-                data-te-navbar-nav-ref
-              >
-                {d?.map((route) => (
-                  <li
-                    className="mb-4 lg:mb-0 lg:pr-2"
-                    data-te-nav-item-ref
-                    key={route.id}
-                  >
-                    <Link
-                      href={route.route}
-                      className="block transition duration-150 ease-in-out hover:text-neutral-700 focus:text-neutral-700 disabled:text-black/30 dark:hover:text-white dark:focus:text-white lg:p-2 [&.active]:text-black/90"
-                      data-te-nav-link-ref
-                      data-te-ripple-init
-                      data-te-ripple-color="light"
-                    >
-                      {route.title}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <UserButton afterSignOutUrl="/" />
-          </div>
+          ))}
+          <UserButton />
         </nav>
       </header>
     </>

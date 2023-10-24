@@ -2,218 +2,78 @@ import type { ReactElement } from "react";
 import NestedLayout from "../components/nested-layout";
 import type { NextPageWithLayout } from "./_app";
 import RootLayout from "~/components/rootLayot";
-import { ModeToggle } from "~/components/ui/darkmodeToggle";
-
+import Link from "next/link";
 const Page: NextPageWithLayout = () => {
   return (
     <>
-      <ModeToggle />
-      <section className="h-screen">
-        <div className="relative">
-          <video
-            autoPlay
-            muted
-            loop
-            className="absolute left-0 top-0 z-[-100] h-auto min-h-full w-auto min-w-full"
-          >
-            <source
-              src="https://res.cloudinary.com/dxhfq1g84/video/upload/v1696680216/video/pexels-cottonbro-8388279_1080p_jpov9c.mp4"
-              type="video/mp4"
-            />
-          </video>
-        </div>
-
-        <div className="absolute left-1/2 top-[calc(50%-200px)] flex -translate-x-1/2 -translate-y-1/2 transform flex-col items-center justify-center rounded-lg">
-          <h1 className="text-center text-5xl capitalize text-white ">
-            Welcome!
-          </h1>
-          <h5 className="line-clamp-1 text-center text-white">
-            Ready for a new adventure?
-          </h5>
-        </div>
-      </section>
-
-      <section className="h-screen">
-        <div className="mx-auto max-w-screen-xl px-4 py-8 lg:px-6 lg:py-16">
-          <div className="max-w-screen-lg text-gray-500 dark:text-gray-400 sm:text-lg">
-            <h2 className="mb-4 text-4xl font-bold tracking-tight text-gray-900 dark:text-white">
-              Powering innovation at{" "}
-              <span className="font-extrabold">200,000+</span> companies
-              worldwide
-            </h2>
-            <p className="mb-4 font-light">
-              Track work across the enterprise through an open, collaborative
-              platform. Link issues across Jira and ingest data from other
-              software development tools, so your IT support and operations
-              teams have richer contextual information to rapidly respond to
-              requests, incidents, and changes.
+      <main className="flex-1">
+        <section className="w-full bg-zinc-100 py-12 md:py-24 lg:py-32 xl:py-48">
+          <div className="container px-4 md:px-6">
+            <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl">
+              Welcome to the Virtual Museum
+            </h1>
+            <p className="my-4 max-w-[600px] text-zinc-500 dark:text-zinc-400 md:text-xl">
+              Explore our digital collections and experience history from the
+              comfort of your home.
             </p>
-            <p className="mb-4 font-medium">
-              Deliver great service experiences fast - without the complexity of
-              traditional ITSM solutions.Accelerate critical development work,
-              eliminate toil, and deploy changes with ease.
-            </p>
-            <a
+            <Link
+              className="inline-flex h-10 items-center justify-center rounded-md bg-zinc-900 px-8 text-sm font-medium text-zinc-50 shadow transition-colors hover:bg-zinc-900/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-zinc-950 disabled:pointer-events-none disabled:opacity-50 dark:bg-zinc-50 dark:text-zinc-900 dark:hover:bg-zinc-50/90 dark:focus-visible:ring-zinc-300"
               href="#"
-              className="text-primary-600 hover:text-primary-800 dark:text-primary-500 dark:hover:text-primary-700 inline-flex items-center font-medium"
             >
-              Learn more
-              <svg
-                className="ml-1 h-6 w-6"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                  clipRule="evenodd"
-                ></path>
-              </svg>
-            </a>
+              Begin Tour
+            </Link>
           </div>
-        </div>
-      </section>
-
-      <section className="h-screen">
-        <div className="mx-auto max-w-screen-xl p-5 dark:bg-gray-800 dark:text-gray-100">
-          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            <div
-              className="relative flex h-96 w-full items-end justify-start bg-cover bg-center text-left dark:bg-gray-500"
-              style={{
-                backgroundImage:
-                  'url("https://source.unsplash.com/random/240x320")',
-              }}
-            >
-              <div className="absolute bottom-0 left-0 right-0 top-0 bg-gradient-to-b dark:from-gray-900 dark:via-transparent dark:to-gray-900"></div>
-              <div className="absolute left-0 right-0 top-0 mx-5 mt-3 flex items-center justify-between">
-                <a
-                  rel="noopener noreferrer"
-                  href="#"
-                  className="tracki bgundefined px-3 py-2 text-xs font-semibold uppercase dark:text-gray-100"
-                >
-                  Politics
-                </a>
-                <div className="flex flex-col justify-start text-center dark:text-gray-100">
-                  <span className="leadi tracki text-3xl font-semibold">
-                    04
-                  </span>
-                  <span className="leadi uppercase">Aug</span>
-                </div>
+        </section>
+        <section className="w-full py-12 md:py-24 lg:py-32 xl:py-48">
+          <div className="container px-4 md:px-6">
+            <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
+              Featured Exhibits
+            </h2>
+            <div className="my-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+              <div className="animate-fadeIn">
+                <img
+                  alt="Exhibit"
+                  className="mx-auto aspect-[1/1] overflow-hidden rounded-xl object-cover object-center sm:w-full"
+                  height="300"
+                  src="/placeholder.svg"
+                  width="300"
+                />
+                <h3 className="mt-2 text-xl font-bold">Exhibit One</h3>
               </div>
-              <h2 className="z-10 p-5">
-                <a
-                  rel="noopener noreferrer"
-                  href="#"
-                  className="text-md font-medium hover:underline dark:text-gray-100"
-                >
-                  {" "}
-                  Autem sunt tempora mollitia magnam non voluptates
-                </a>
-              </h2>
-            </div>
-            <div
-              className="relative flex h-96 w-full items-end justify-start bg-cover bg-center text-left dark:bg-gray-500"
-              style={{
-                backgroundImage:
-                  'url("https://source.unsplash.com/random/241x320")',
-              }}
-            >
-              <div className="absolute bottom-0 left-0 right-0 top-0 bg-gradient-to-b dark:from-gray-900 dark:via-transparent dark:to-gray-900"></div>
-              <div className="absolute left-0 right-0 top-0 mx-5 mt-3 flex items-center justify-between">
-                <a
-                  rel="noopener noreferrer"
-                  href="#"
-                  className="tracki bgundefined px-3 py-2 text-xs font-semibold uppercase dark:text-gray-100"
-                >
-                  Health
-                </a>
-                <div className="flex flex-col justify-start text-center dark:text-gray-100">
-                  <span className="leadi tracki text-3xl font-semibold">
-                    01
-                  </span>
-                  <span className="leadi uppercase">Aug</span>
-                </div>
+              <div className="animate-fadeIn delay-100">
+                <img
+                  alt="Exhibit"
+                  className="mx-auto aspect-[1/1] overflow-hidden rounded-xl object-cover object-center sm:w-full"
+                  height="300"
+                  src="/placeholder.svg"
+                  width="300"
+                />
+                <h3 className="mt-2 text-xl font-bold">Exhibit Two</h3>
               </div>
-              <h2 className="z-10 p-5">
-                <a
-                  rel="noopener noreferrer"
-                  href="#"
-                  className="text-md font-medium hover:underline dark:text-gray-100"
-                >
-                  Inventore reiciendis aliquam excepturi
-                </a>
-              </h2>
-            </div>
-            <div
-              className="relative flex h-96 w-full items-end justify-start bg-cover bg-center text-left dark:bg-gray-500"
-              style={{
-                backgroundImage:
-                  'url("https://source.unsplash.com/random/242x320")',
-              }}
-            >
-              <div className="absolute bottom-0 left-0 right-0 top-0 bg-gradient-to-b dark:from-gray-900 dark:via-transparent dark:to-gray-900"></div>
-              <div className="absolute left-0 right-0 top-0 mx-5 mt-3 flex items-center justify-between">
-                <a
-                  rel="noopener noreferrer"
-                  href="#"
-                  className="tracki bgundefined px-3 py-2 text-xs font-semibold uppercase dark:text-gray-100"
-                >
-                  Science
-                </a>
-                <div className="flex flex-col justify-start text-center dark:text-gray-100">
-                  <span className="leadi tracki text-3xl font-semibold">
-                    28
-                  </span>
-                  <span className="leadi uppercase">Jul</span>
-                </div>
+              <div className="animate-fadeIn delay-200">
+                <img
+                  alt="Exhibit"
+                  className="mx-auto aspect-[1/1] overflow-hidden rounded-xl object-cover object-center sm:w-full"
+                  height="300"
+                  src="/placeholder.svg"
+                  width="300"
+                />
+                <h3 className="mt-2 text-xl font-bold">Exhibit Three</h3>
               </div>
-              <h2 className="z-10 p-5">
-                <a
-                  rel="noopener noreferrer"
-                  href="#"
-                  className="text-md font-medium hover:underline dark:text-gray-100"
-                >
-                  Officiis mollitia dignissimos commodi optio vero animi
-                </a>
-              </h2>
-            </div>
-            <div
-              className="relative flex h-96 w-full items-end justify-start bg-cover bg-center text-left dark:bg-gray-500"
-              style={{
-                backgroundImage:
-                  'url("https://source.unsplash.com/random/243x320")',
-              }}
-            >
-              <div className="absolute bottom-0 left-0 right-0 top-0 bg-gradient-to-b dark:from-gray-900 dark:via-transparent dark:to-gray-900"></div>
-              <div className="absolute left-0 right-0 top-0 mx-5 mt-3 flex items-center justify-between">
-                <a
-                  rel="noopener noreferrer"
-                  href="#"
-                  className="tracki bgundefined px-3 py-2 text-xs font-semibold uppercase dark:text-gray-100"
-                >
-                  Sports
-                </a>
-                <div className="flex flex-col justify-start text-center dark:text-gray-100">
-                  <span className="leadi tracki text-3xl font-semibold">
-                    19
-                  </span>
-                  <span className="leadi uppercase">Jul</span>
-                </div>
+              <div className="animate-fadeIn delay-300">
+                <img
+                  alt="Exhibit"
+                  className="mx-auto aspect-[1/1] overflow-hidden rounded-xl object-cover object-center sm:w-full"
+                  height="300"
+                  src="/placeholder.svg"
+                  width="300"
+                />
+                <h3 className="mt-2 text-xl font-bold">Exhibit Four</h3>
               </div>
-              <h2 className="z-10 p-5">
-                <a
-                  rel="noopener noreferrer"
-                  href="#"
-                  className="text-md font-medium hover:underline dark:text-gray-100"
-                >
-                  Doloribus sit illo necessitatibus architecto exercitationem
-                </a>
-              </h2>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </main>
     </>
   );
 };
