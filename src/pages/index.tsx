@@ -3,6 +3,7 @@ import NestedLayout from "../components/nested-layout";
 import type { NextPageWithLayout } from "./_app";
 import RootLayout from "~/components/rootLayot";
 import Link from "next/link";
+import Image from "next/image";
 const Page: NextPageWithLayout = () => {
   return (
     <>
@@ -31,7 +32,7 @@ const Page: NextPageWithLayout = () => {
             </h2>
             <div className="my-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
               <div className="animate-fadeIn">
-                <img
+                <Image
                   alt="Exhibit"
                   className="mx-auto aspect-[1/1] overflow-hidden rounded-xl object-cover object-center sm:w-full"
                   height="300"
@@ -41,7 +42,7 @@ const Page: NextPageWithLayout = () => {
                 <h3 className="mt-2 text-xl font-bold">Exhibit One</h3>
               </div>
               <div className="animate-fadeIn delay-100">
-                <img
+                <Image
                   alt="Exhibit"
                   className="mx-auto aspect-[1/1] overflow-hidden rounded-xl object-cover object-center sm:w-full"
                   height="300"
@@ -51,7 +52,7 @@ const Page: NextPageWithLayout = () => {
                 <h3 className="mt-2 text-xl font-bold">Exhibit Two</h3>
               </div>
               <div className="animate-fadeIn delay-200">
-                <img
+                <Image
                   alt="Exhibit"
                   className="mx-auto aspect-[1/1] overflow-hidden rounded-xl object-cover object-center sm:w-full"
                   height="300"
@@ -61,7 +62,7 @@ const Page: NextPageWithLayout = () => {
                 <h3 className="mt-2 text-xl font-bold">Exhibit Three</h3>
               </div>
               <div className="animate-fadeIn delay-300">
-                <img
+                <Image
                   alt="Exhibit"
                   className="mx-auto aspect-[1/1] overflow-hidden rounded-xl object-cover object-center sm:w-full"
                   height="300"

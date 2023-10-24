@@ -6,6 +6,7 @@ import { Label } from "~/components/ui/label";
 import { Input } from "~/components/ui/input";
 import { Textarea } from "~/components/ui/textarea";
 import { Button } from "~/components/ui/button";
+import Image from "next/image";
 
 const Page: NextPageWithLayout = () => {
   return (
@@ -15,11 +16,11 @@ const Page: NextPageWithLayout = () => {
           <h2 className="mb-4 text-3xl font-bold">Our Team</h2>
           <div className="mb-8 grid gap-6 md:grid-cols-3">
             <div className="text-center">
-              <img
+              <Image
                 alt="Team member"
                 className="mx-auto mb-2 rounded-full"
                 height={100}
-                src="/placeholder.svg"
+                src="https://res.cloudinary.com/dxhfq1g84/image/upload/v1698164979/thoughtful-gallery/noImage_byy3zm.jpg"
                 style={{
                   aspectRatio: "100/100",
                   objectFit: "cover",
@@ -30,11 +31,11 @@ const Page: NextPageWithLayout = () => {
               <p className="text-gray-500">Curator</p>
             </div>
             <div className="text-center">
-              <img
+              <Image
                 alt="Team member"
                 className="mx-auto mb-2 rounded-full"
                 height={100}
-                src="/placeholder.svg"
+                src="https://res.cloudinary.com/dxhfq1g84/image/upload/v1698164979/thoughtful-gallery/noImage_byy3zm.jpg"
                 style={{
                   aspectRatio: "100/100",
                   objectFit: "cover",
@@ -45,7 +46,7 @@ const Page: NextPageWithLayout = () => {
               <p className="text-gray-500">Art Historian</p>
             </div>
             <div className="text-center">
-              <img
+              <Image
                 alt="Team member"
                 className="mx-auto mb-2 rounded-full"
                 height={100}

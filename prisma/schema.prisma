@@ -17,6 +17,7 @@ model User {
   name     String
   email    String
   jobTitle String
+  photo    String?  @default("https://res.cloudinary.com/dxhfq1g84/image/upload/v1698164979/thoughtful-gallery/noImage_byy3zm.jpg")
   posts    Post[]
   profile  Profile?
   admin Boolean @default(false)
@@ -68,7 +69,7 @@ enum Role {
     EDITOR
 }
 
-model Image {
+model Image2D {
   id Int @id @default(autoincrement())
   url String @default("https://cdn.vectorstock.com/i/preview-1x/65/30/default-image-icon-missing-picture-page-vector-40546530.jpg")
   alt String?
