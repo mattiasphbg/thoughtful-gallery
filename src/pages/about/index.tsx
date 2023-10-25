@@ -8,7 +8,7 @@ import Image from "next/image";
 const Page: NextPageWithLayout = () => {
   return (
     <>
-      <section className="flex h-screen flex-col justify-between">
+      <section className="flex flex-col justify-between">
         <main className="flex flex-col gap-8 p-6 md:p-12">
           <h1 className="text-3xl font-bold md:text-5xl">About the Museum</h1>
           <p className="text-gray-600 dark:text-gray-300">
