@@ -2,15 +2,14 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 datasource db {
-    provider     = "mysql"
-    url          = env("DATABASE_URL")
-    relationMode = "prisma"
+  provider     = "mysql"
+  url          = env("DATABASE_URL")
+  relationMode = "prisma"
 }
 
 generator client {
-    provider = "prisma-client-js"
+  provider = "prisma-client-js"
 }
-
 
 model User {
   id       Int      @id @default(autoincrement())
@@ -20,7 +19,7 @@ model User {
   photo    String?  @default("https://res.cloudinary.com/dxhfq1g84/image/upload/v1698164979/thoughtful-gallery/noImage_byy3zm.jpg")
   posts    Post[]
   profile  Profile?
-  admin Boolean @default(false)
+  admin    Boolean  @default(false)
 }
 
 model Profile {
@@ -48,30 +47,50 @@ model Category {
   @@unique([name])
 }
 
+model Country {
+  id          Int          @id @default(autoincrement())
+  name        String
+  population  Int
+  capital     String
+  currency    String
+  language    String
+  flagImage   String
+  description String
+  
+  histories   History[]
+  items       Item[]
+}
+model History {
+  id          Int     @id @default(autoincrement())
+  eventDate   DateTime
+  eventDescription String
+  timeline    String // or DateTime, based on your chosen representation
+  
+  country     Country @relation(fields: [countryId], references: [id])
+  countryId   Int
+}
+model Item {
+  id          Int     @id @default(autoincrement())
+  name        String
+  description String
+  image       String
 
-model Routes {
-    id Int @id @default(autoincrement())
-    route String
-    layer Layers? 
-    title String @default("")
-    
+  countries   Country[]
 }
 
-enum Layers {
-    ONE
-    TWO
-    THREE
-}
+
+
+
 
 enum Role {
-    ADMIN
-    USER
-    EDITOR
+  ADMIN
+  USER
+  EDITOR
 }
 
 model Image2D {
-  id Int @id @default(autoincrement())
-  url String @default("https://cdn.vectorstock.com/i/preview-1x/65/30/default-image-icon-missing-picture-page-vector-40546530.jpg")
-  alt String?
+  id       Int     @id @default(autoincrement())
+  url      String  @default("https://cdn.vectorstock.com/i/preview-1x/65/30/default-image-icon-missing-picture-page-vector-40546530.jpg")
+  alt      String?
   category String?
 }
