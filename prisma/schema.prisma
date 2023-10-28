@@ -68,6 +68,8 @@ model History {
   
   country     Country @relation(fields: [countryId], references: [id])
   countryId   Int
+
+  @@index([countryId])
 }
 model Item {
   id          Int     @id @default(autoincrement())
