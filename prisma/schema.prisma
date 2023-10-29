@@ -31,13 +31,17 @@ model Profile {
 }
 
 model Post {
-  id         Int        @id @default(autoincrement())
+   id         Int        @id @default(autoincrement())
+  slug       String     @unique // A URL-friendly version of the title
   title      String
-  published  Boolean    @default(true)
-  content    String     @db.VarChar(500)
-  authorId   Int        @unique
-  author     User       @relation(fields: [authorId], references: [id])
+  description String    @db.VarChar(100)
+  imageUrl      String
+  content    String     @db.VarChar(1500)
+  published  Boolean    @default(false)
+  author     User?       @relation(fields: [authorId], references: [id])
+  authorId   Int
   categories Category[]
+  createdAt  DateTime   @default(now())
 }
 
 model Category {
@@ -78,10 +82,6 @@ model Item {
 
   countries   Country[]
 }
-
-
-
-
 
 enum Role {
     ADMIN
