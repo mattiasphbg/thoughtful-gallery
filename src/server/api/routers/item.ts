@@ -15,11 +15,9 @@ export const item = createTRPCRouter({
         return items;
     }),
     getOneIName: publicProcedure.query(async ({ ctx, input }) => {
-        const validatedInput = getOneInputSchema.parse(input);
-
         const item = await ctx.db.item.findFirst({
             where: {
-                name: validatedInput.name,
+                name: input,
             },
         });
 
