@@ -67,69 +67,6 @@ const Page: NextPageWithLayout = () => {
                                 <Button variant="outline">Read more</Button>
                             </div>
                         ))}
-                        <div className="flex flex-col items-start space-y-4">
-                            <Image
-                                alt="Placeholder"
-                                className="w-full rounded-lg object-cover shadow-lg"
-                                height={250}
-                                src="/placeholder.svg"
-                                style={{
-                                    aspectRatio: "400/250",
-                                    objectFit: "cover",
-                                }}
-                                width={400}
-                            />
-                            <h2 className="text-2xl font-bold">
-                                Article Title
-                            </h2>
-                            <p className="text-zinc-500">
-                                Lorem ipsum dolor sit amet, consectetur
-                                adipiscing elit. Integer nec odio.
-                            </p>
-                            <Button variant="outline">Read more</Button>
-                        </div>
-                        <div className="flex flex-col items-start space-y-4">
-                            <Image
-                                alt="Placeholder"
-                                className="w-full rounded-lg object-cover shadow-lg"
-                                height={250}
-                                src="/placeholder.svg"
-                                style={{
-                                    aspectRatio: "400/250",
-                                    objectFit: "cover",
-                                }}
-                                width={400}
-                            />
-                            <h2 className="text-2xl font-bold">
-                                Article Title
-                            </h2>
-                            <p className="text-zinc-500">
-                                Lorem ipsum dolor sit amet, consectetur
-                                adipiscing elit. Integer nec odio.
-                            </p>
-                            <Button variant="outline">Read more</Button>
-                        </div>
-                        <div className="flex flex-col items-start space-y-4">
-                            <Image
-                                alt="Placeholder"
-                                className="w-full rounded-lg object-cover shadow-lg"
-                                height={250}
-                                src="/placeholder.svg"
-                                style={{
-                                    aspectRatio: "400/250",
-                                    objectFit: "cover",
-                                }}
-                                width={400}
-                            />
-                            <h2 className="text-2xl font-bold">
-                                Article Title
-                            </h2>
-                            <p className="text-zinc-500">
-                                Lorem ipsum dolor sit amet, consectetur
-                                adipiscing elit. Integer nec odio.
-                            </p>
-                            <Button variant="outline">Read more</Button>
-                        </div>
                     </div>
                     <form className="mt-10 flex space-x-4">
                         <Input

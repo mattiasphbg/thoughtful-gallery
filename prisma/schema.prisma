@@ -21,6 +21,7 @@ model User {
   posts    Post[]
   profile  Profile?
   admin Boolean @default(false)
+  artworks Artwork[]
 }
 
 model Profile {
@@ -64,6 +65,7 @@ model Country {
   
   histories   History[]
   items       Item[]
+  
 }
 model History {
   id          Int     @id @default(autoincrement())
@@ -74,6 +76,32 @@ model History {
   country     Country @relation(fields: [countryId], references: [id])
   countryId   Int
 }
+
+model Artwork {
+  id          Int     @id @default(autoincrement())
+  title       String
+  description String
+  imageUrl    String
+  // Add any other fields relevant to your artwork data
+@@map(name: "artworks_categories")
+  // Relationships
+  artist      User?   @relation(fields: [artistId], references: [id])
+  artistId    Int?
+  
+}
+
+model Artifact {
+  id          Int     @id @default(autoincrement())
+  name        String
+  description String
+  imageUrl    String
+  // Add any other fields relevant to your artifact data
+
+  // Relationships
+}
+
+
+
 model Item {
   id          Int     @id @default(autoincrement())
   name        String
