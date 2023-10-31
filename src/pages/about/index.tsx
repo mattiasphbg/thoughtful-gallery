@@ -32,48 +32,29 @@ const Page: NextPageWithLayout = () => {
                         for our visitors.
                     </p>
                     <section className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 ">
-                        <div className="flex flex-col gap-4">
-                            <Image
-                                alt="Artwork 1"
-                                className="aspect-square w-full overflow-hidden rounded-lg border border-zinc-200 object-cover dark:border-zinc-800"
-                                height={200}
-                                src="https://res.cloudinary.com/dxhfq1g84/image/upload/v1698164979/thoughtful-gallery/noImage_byy3zm.jpg"
-                                width={200}
-                                priority={false}
-                            />
-                            <h2 className="text-xl font-bold">Artwork 1</h2>
-                            <p className="text-gray-600 dark:text-gray-300">
-                                This is a description of Artwork 1.
-                            </p>
-                        </div>
-                        <div className="flex flex-col gap-4">
-                            <Image
-                                alt="Artwork 2"
-                                className="aspect-square w-full overflow-hidden rounded-lg border border-zinc-200 object-cover dark:border-zinc-800"
-                                height={200}
-                                src="https://res.cloudinary.com/dxhfq1g84/image/upload/v1698164979/thoughtful-gallery/noImage_byy3zm.jpg"
-                                width={200}
-                                priority={false}
-                            />
-                            <h2 className="text-xl font-bold">Artwork 2</h2>
-                            <p className="text-gray-600 dark:text-gray-300">
-                                This is a description of Artwork 2.
-                            </p>
-                        </div>
-                        <div className="flex flex-col gap-4">
-                            <Image
-                                alt="Artwork 3"
-                                className="aspect-square w-full overflow-hidden rounded-lg border border-zinc-200 object-cover dark:border-zinc-800"
-                                height={200}
-                                src="https://res.cloudinary.com/dxhfq1g84/image/upload/v1698164979/thoughtful-gallery/noImage_byy3zm.jpg"
-                                width={200}
-                                priority={false}
-                            />
-                            <h2 className="text-xl font-bold">Artwork 3</h2>
-                            <p className="text-gray-600 dark:text-gray-300">
-                                This is a description of Artwork 3.
-                            </p>
-                        </div>
+                        {data?.map((data) => {
+                            return (
+                                <div
+                                    key={data.id}
+                                    className="flex flex-col gap-4"
+                                >
+                                    <Image
+                                        alt={data.name}
+                                        className="aspect-square w-full overflow-hidden rounded-lg border border-zinc-200 object-cover dark:border-zinc-800"
+                                        height={200}
+                                        src={data.image}
+                                        width={200}
+                                        priority={false}
+                                    />
+                                    <h2 className="text-xl font-bold">
+                                        {data.name}
+                                    </h2>
+                                    <p className="text-gray-600 dark:text-gray-300">
+                                        {data.description}
+                                    </p>
+                                </div>
+                            );
+                        })}
                     </section>
                 </main>
             </section>
