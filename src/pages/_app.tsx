@@ -5,6 +5,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { api } from "~/utils/api";
 import "~/styles/globals.css";
 import Header from "~/components/headfoot/Header";
+import { Analytics } from "@vercel/analytics/react";
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
     getLayout?: (page: ReactElement) => ReactNode;
@@ -22,6 +23,7 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
         <ClerkProvider {...pageProps}>
             <Header />
             <Component {...pageProps} />
+            <Analytics />
         </ClerkProvider>,
     );
 }
