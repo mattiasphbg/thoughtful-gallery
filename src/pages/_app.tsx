@@ -7,22 +7,22 @@ import "~/styles/globals.css";
 import Header from "~/components/headfoot/Header";
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
-  getLayout?: (page: ReactElement) => ReactNode;
+    getLayout?: (page: ReactElement) => ReactNode;
 };
 
 type AppPropsWithLayout = AppProps & {
-  Component: NextPageWithLayout;
+    Component: NextPageWithLayout;
 };
 
 function MyApp({ Component, pageProps }: AppPropsWithLayout) {
-  // Use the layout defined at the page level, if available
-  const getLayout = Component.getLayout ?? ((page) => page);
+    // Use the layout defined at the page level, if available
+    const getLayout = Component.getLayout ?? ((page) => page);
 
-  return getLayout(
-    <ClerkProvider {...pageProps}>
-      <Header />
-      <Component {...pageProps} />
-    </ClerkProvider>,
-  );
+    return getLayout(
+        <ClerkProvider {...pageProps}>
+            <Header />
+            <Component {...pageProps} />
+        </ClerkProvider>,
+    );
 }
 export default api.withTRPC(MyApp);
