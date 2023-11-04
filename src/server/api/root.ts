@@ -1,5 +1,6 @@
 import { item } from "~/server/api/routers/item";
 import { post } from "~/server/api/routers/post";
+import { user } from "~/server/api/routers/user";
 
 import { createTRPCRouter } from "~/server/api/trpc";
 
@@ -10,8 +11,8 @@ import { createTRPCRouter } from "~/server/api/trpc";
  */
 export const appRouter = createTRPCRouter({
     allItems: item.getAll,
-    getoneItem: item.getOneIName,
     AllPost: post.allPost,
+    AllUser: user.getAll,
 });
 
 // export type definition of API

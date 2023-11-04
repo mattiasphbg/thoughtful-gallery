@@ -1,0 +1,34 @@
+import { z } from "zod";
+
+const getOneInputSchema = z.object({
+    name: z.string(),
+});
+
+import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
+
+export const user = createTRPCRouter({
+    getAll: publicProcedure.query(({ ctx }) => {
+        const users = ctx.db.user.findMany();
+        // Validate the response using the Zod schema
+        // zDataChecker.parse(items);
+
+        return users;
+    }),
+    getOneIName: publicProcedure.query(async ({ ctx, input }) => {
+        const user = await ctx.db.user.findFirst({
+            where: {
+                name: input,
+            },
+        });
+
+        if (!user) {
+            // Handle the case where the item is not found
+            throw new Error("Item not found");
+        }
+
+        // Validate the response using the Zod schema if needed
+        // itemResponseSchema.parse(item);
+
+        return user;
+    }),
+});

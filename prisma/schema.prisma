@@ -20,10 +20,15 @@ model User {
   photo    String?  @default("https://res.cloudinary.com/dxhfq1g84/image/upload/v1698164979/thoughtful-gallery/noImage_byy3zm.jpg")
   posts    Post[]
   profile  Profile?
-  admin Boolean @default(false)
+  role Role
   artworks Artwork[]
 }
 
+enum Role {
+  ADMIN
+  USER
+  EDITOR
+}
 model Profile {
   id       Int    @id @default(autoincrement())
   biograpy String // Intentional typo!
@@ -32,7 +37,7 @@ model Profile {
 }
 
 model Post {
-   id         Int        @id @default(autoincrement())
+  id         Int        @id @default(autoincrement())
   slug       String     @unique // A URL-friendly version of the title
   title      String
   description String    @db.VarChar(100)
@@ -82,9 +87,9 @@ model Artwork {
   title       String
   description String
   imageUrl    String
-  // Add any other fields relevant to your artwork data
-@@map(name: "artworks_categories")
-  // Relationships
+  
+  @@map(name: "artworks_categories")
+  
   artist      User?   @relation(fields: [artistId], references: [id])
   artistId    Int?
   
@@ -109,17 +114,4 @@ model Item {
   image       String
 
   countries   Country[]
-}
-
-enum Role {
-    ADMIN
-    USER
-    EDITOR
-}
-
-model Image2D {
-  id Int @id @default(autoincrement())
-  url String @default("https://cdn.vectorstock.com/i/preview-1x/65/30/default-image-icon-missing-picture-page-vector-40546530.jpg")
-  alt String?
-  category String?
 }
