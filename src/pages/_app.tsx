@@ -8,7 +8,9 @@ import Header from "~/components/headfoot/Header";
 import { Analytics } from "@vercel/analytics/react";
 import { Open_Sans } from "next/font/google";
 
-const openSans = Open_Sans();
+const openSans = Open_Sans({
+    subsets: ["latin"],
+});
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
     getLayout?: (page: ReactElement) => ReactNode;
