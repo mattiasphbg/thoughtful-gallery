@@ -6,6 +6,9 @@ import { api } from "~/utils/api";
 import "~/styles/globals.css";
 import Header from "~/components/headfoot/Header";
 import { Analytics } from "@vercel/analytics/react";
+import { Open_Sans } from "next/font/google";
+
+const openSans = Open_Sans();
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
     getLayout?: (page: ReactElement) => ReactNode;
@@ -20,11 +23,14 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
     const getLayout = Component.getLayout ?? ((page) => page);
 
     return getLayout(
-        <ClerkProvider {...pageProps}>
-            <Header />
-            <Component {...pageProps} />
-            <Analytics />
-        </ClerkProvider>,
+        <main className={openSans.className}>
+            <ClerkProvider {...pageProps}>
+                <Header />
+                <Component {...pageProps} />
+                <Analytics />
+            </ClerkProvider>
+            ,
+        </main>,
     );
 }
 export default api.withTRPC(MyApp);
