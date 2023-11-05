@@ -29,6 +29,24 @@ enum Role {
   USER
   EDITOR
 }
+
+
+model Exhibit {
+  id Int @id @default(autoincrement())
+  title String
+  subTitle String?
+  Description String 
+  image String?
+  date DateTime?
+  location String
+  categories Category[]
+  period String?
+  Events String?
+  Historical String @db.VarChar(500)
+}
+
+
+
 model Profile {
   id       Int    @id @default(autoincrement())
   biograpy String // Intentional typo!
@@ -46,14 +64,13 @@ model Post {
   published  Boolean    @default(false)
   author     User?       @relation(fields: [authorId], references: [id])
   authorId   Int
-  categories Category[]
   createdAt  DateTime   @default(now())
 }
 
 model Category {
   id    Int    @id @default(autoincrement())
-  name  String @db.VarChar(50)
-  posts Post[]
+  name  String @db.VarChar(100)
+  Exhibits Exhibit[]
 
   @@unique([name])
 }
@@ -100,9 +117,7 @@ model Artifact {
   name        String
   description String
   imageUrl    String
-  // Add any other fields relevant to your artifact data
 
-  // Relationships
 }
 
 
