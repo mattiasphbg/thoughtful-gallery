@@ -8,6 +8,7 @@
  */
 import { initTRPC, TRPCError } from "@trpc/server";
 import { type CreateNextContextOptions } from "@trpc/server/adapters/next";
+import { clerkClient } from "@clerk/nextjs";
 import superjson from "superjson";
 
 import { db } from "~/server/db";
@@ -53,7 +54,10 @@ const createInnerTRPCContext = ({ auth }: AuthContext) => {
  *
  * @see https://trpc.io/docs/context
  */
-export const createTRPCContext = (opts: CreateNextContextOptions) => {
+export const createTRPCContext = async (opts: CreateNextContextOptions) => {
+    const { req, res } = opts;
+    const { userId, orgSlug, organization } = getAuth(req);
+    const user = userId ? await clerkClient.users.getUser(userId) : undefined;
     return createInnerTRPCContext({ auth: getAuth(opts.req) });
 };
 
