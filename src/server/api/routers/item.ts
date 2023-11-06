@@ -1,9 +1,3 @@
-import { z } from "zod";
-
-const getOneInputSchema = z.object({
-    name: z.string(),
-});
-
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
 
 export const item = createTRPCRouter({
