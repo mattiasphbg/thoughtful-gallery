@@ -14,7 +14,7 @@ export const appRouter = createTRPCRouter({
     allItems: item.getAll,
     AllPost: post.allPost,
     AllUser: user.getAll,
-    feedbackCreate: feedback.create,
+    feedbackCreate: feedback.add,
 });
 
 // export type definition of API

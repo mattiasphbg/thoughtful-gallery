@@ -1,4 +1,6 @@
+import { feedback } from '~/server/api/routers/feedback';
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
+import { z } from "zod"
 
 export const feedback = createTRPCRouter({
     getAll: publicProcedure.query(({ ctx }) => {
@@ -25,19 +27,16 @@ export const feedback = createTRPCRouter({
 
         return item;
     }),
-    create: publicProcedure.mutation(({ ctx, input }) => {
-        if (input) {
-            const newItem = ctx.db.feedback.create({
-                data: {
-                    name: input.name,
-                    email: input.email,
-                    message: input.message,
-                    createdAt: new Date(),
-                    // You can also pass the createdAt value from the input if needed
-                },
-            });
-
-            return newItem;
-        }
+    add: publicProcedure
+    .input(
+      z.object({
+        id: z.string().optional(),
+        text: z.string().min(1),
+      }),
+    )
+    .mutation(async ({ ctx, input }) => {
+      const todo = await ctx.db.feedback.create({
+        data: input,
+      });
+      return todo;
     }),
-});
