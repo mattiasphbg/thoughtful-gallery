@@ -1,16 +1,16 @@
 "use client";
 import React from "react";
-import { z } from "zod";
+import { type z } from "zod";
 import { Form } from "../form";
-import { DefaultValues, useForm } from "react-hook-form";
+import { type DefaultValues, useForm } from "react-hook-form";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "../button";
 import { cn } from "~/utils/utils";
 
-import { FieldConfig } from "./types";
+import { type FieldConfig } from "./types";
 import {
-    ZodObjectOrWrapped,
+    type ZodObjectOrWrapped,
     getDefaultValues,
     getObjectFormSchema,
 } from "./utils";
@@ -60,7 +60,7 @@ function AutoForm<SchemaType extends ZodObjectOrWrapped>({
         <Form {...form}>
             <form
                 onSubmit={(e) => {
-                    form.handleSubmit(onSubmit)(e);
+                    void form.handleSubmit(onSubmit)(e);
                 }}
                 onChange={() => {
                     const values = form.getValues();
