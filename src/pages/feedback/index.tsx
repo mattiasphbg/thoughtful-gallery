@@ -6,9 +6,19 @@ import { Label } from "~/components/ui/label";
 import { Input } from "~/components/ui/input";
 import { Textarea } from "~/components/ui/textarea";
 import { Button } from "~/components/ui/button";
+
+import AutoForm, { AutoFormSubmit } from "~/components/ui/auto-form";
+import * as z from "zod";
+
 import Image from "next/image";
 
 import { api } from "~/utils/api";
+
+const schema = z.object({
+    name: z.string().nonempty({ message: "Name is required" }),
+    email: z.string().email({ message: "Invalid email address" }),
+    message: z.string().nonempty({ message: "Message is required" }),
+});
 
 const Page: NextPageWithLayout = () => {
     const { data } = api.AllUser.useQuery();
@@ -44,37 +54,10 @@ const Page: NextPageWithLayout = () => {
                             ))}
                     </div>
                     <h2 className="mb-4 text-3xl font-bold">Contact Us</h2>
-                    <form className="grid gap-4">
-                        <div>
-                            <Label className="text-base" htmlFor="name">
-                                Name
-                            </Label>
-                            <Input id="name" placeholder="Enter your name" />
-                        </div>
-                        <div>
-                            <Label className="text-base" htmlFor="email">
-                                Email
-                            </Label>
-                            <Input
-                                id="email"
-                                placeholder="Enter your email"
-                                type="email"
-                            />
-                        </div>
-                        <div>
-                            <Label className="text-base" htmlFor="message">
-                                Message
-                            </Label>
-                            <Textarea
-                                id="message"
-                                placeholder="Enter your message"
-                                rows={4}
-                            />
-                        </div>
-                        <Button className="w-full md:w-auto" type="submit">
-                            Submit
-                        </Button>
-                    </form>
+
+                    <AutoForm formSchema={schema}>
+                        <AutoFormSubmit>Send now</AutoFormSubmit>
+                    </AutoForm>
                 </div>
             </section>
         </>
