@@ -1,11 +1,7 @@
-import type { ReactElement } from "react";
+import { useState, type ReactElement } from "react";
 import Layout from "../../components/layout";
 import NestedLayout from "../../components/nested-layout";
 import type { NextPageWithLayout } from "../_app";
-import { Label } from "~/components/ui/label";
-import { Input } from "~/components/ui/input";
-import { Textarea } from "~/components/ui/textarea";
-import { Button } from "~/components/ui/button";
 
 import AutoForm, { AutoFormSubmit } from "~/components/ui/auto-form";
 import * as z from "zod";
@@ -22,6 +18,31 @@ const schema = z.object({
 
 const Page: NextPageWithLayout = () => {
     const { data } = api.AllUser.useQuery();
+    const { mutate, isLoading } = api.feedbackCreate.useMutation();
+
+    const onSubmit = () => {
+        try {
+            const updatedValues = {
+                message: values.message ?? "",
+                name: values.name ?? "",
+                email: values.email ?? "",
+            };
+
+            const result = mutate(updatedValues);
+            // Handle the result
+        } catch (error) {
+            // Handle the error
+        }
+    };
+
+    const initialValues = {
+        name: "",
+        email: "",
+        message: "",
+    };
+
+    const [values, setValues] =
+        useState<Partial<z.infer<typeof schema>>>(initialValues);
 
     return (
         <>
@@ -55,7 +76,23 @@ const Page: NextPageWithLayout = () => {
                     </div>
                     <h2 className="mb-4 text-3xl font-bold">Contact Us</h2>
 
-                    <AutoForm formSchema={schema}>
+                    <AutoForm
+                        formSchema={schema}
+                        values={values}
+                        onSubmit={onSubmit}
+                        onValuesChange={setValues}
+                        fieldConfig={{
+                            name: {
+                                description: "Your name",
+                            },
+                            email: {
+                                description: "Your email address",
+                            },
+                            message: {
+                                description: "Your message",
+                            },
+                        }}
+                    >
                         <AutoFormSubmit>Send now</AutoFormSubmit>
                     </AutoForm>
                 </div>
