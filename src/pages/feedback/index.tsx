@@ -93,7 +93,10 @@ const Page: NextPageWithLayout = () => {
                             },
                         }}
                     >
-                        <AutoFormSubmit>Send now</AutoFormSubmit>
+                        <AutoFormSubmit>
+                            {" "}
+                            {isLoading ? "Sending..." : "Send now"}
+                        </AutoFormSubmit>
                     </AutoForm>
                 </div>
             </section>
