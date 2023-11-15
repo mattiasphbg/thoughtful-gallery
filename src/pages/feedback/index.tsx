@@ -18,7 +18,7 @@ const schema = z.object({
 
 const Page: NextPageWithLayout = () => {
     const { data } = api.AllUser.useQuery();
-    const { mutate, isLoading } = api.feedbackCreate.useMutation();
+    const { mutate, isLoading, isSuccess } = api.feedbackCreate.useMutation();
 
     const onSubmit = () => {
         try {
@@ -29,7 +29,6 @@ const Page: NextPageWithLayout = () => {
             };
 
             const result = mutate(updatedValues);
-            // Handle the result
         } catch (error) {
             // Handle the error
         }
@@ -97,6 +96,7 @@ const Page: NextPageWithLayout = () => {
                             {" "}
                             {isLoading ? "Sending..." : "Send now"}
                         </AutoFormSubmit>
+                        {isSuccess && " Success! \u2714"}
                     </AutoForm>
                 </div>
             </section>
