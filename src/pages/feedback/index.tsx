@@ -53,12 +53,12 @@ const Page: NextPageWithLayout = () => {
                             ?.filter((who) => who.role === "EDITOR")
                             .map((editor) => (
                                 <div key={editor.id} className="text-center">
-                                    {editor.photo && (
+                                    {editor.imageUrl && (
                                         <Image
                                             alt="Team member"
                                             className="mx-auto mb-2 rounded-full"
                                             height={100}
-                                            src={editor.photo}
+                                            src={editor.imageUrl}
                                             style={{
                                                 aspectRatio: "100/100",
                                                 objectFit: "cover",

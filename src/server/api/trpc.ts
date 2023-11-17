@@ -10,10 +10,10 @@ import { initTRPC, TRPCError } from "@trpc/server";
 import { type CreateNextContextOptions } from "@trpc/server/adapters/next";
 import { clerkClient } from "@clerk/nextjs";
 import superjson from "superjson";
-
+import { Role } from "@prisma/client";
 import { db } from "~/server/db";
 
-import { getAuth } from "@clerk/nextjs/server";
+import { getAuth, User } from "@clerk/nextjs/server";
 import type {
     SignedInAuthObject,
     SignedOutAuthObject,
@@ -22,6 +22,26 @@ import type {
 interface AuthContext {
     auth: SignedInAuthObject | SignedOutAuthObject;
 }
+type userIdentity = {
+    id: number;
+    name: string;
+    email: string;
+    jobTitle: string;
+    imageUrl: string | null;
+    globalAdmin: boolean | null;
+    clerkId: string | null;
+    createdAt: Date;
+    updatedAt: Date;
+    role: Role;
+};
+
+type CreateContextOptions = {
+    session: {
+        clerkUser?: User | undefined | null;
+        userId?: string | undefined | null;
+        identity?: userIdentity | undefined | null;
+    };
+};
 
 /**
  * 1. CONTEXT
@@ -41,10 +61,14 @@ interface AuthContext {
  *
  * @see https://create.t3.gg/en/usage/trpc#-serverapitrpcts
  */
-const createInnerTRPCContext = ({ auth }: AuthContext) => {
+const createInnerTRPCContext = (
+    // { auth }: AuthContext,
+    _opt: CreateContextOptions,
+) => {
     return {
-        auth,
+        // auth,
         db,
+        session: _opt.session,
     };
 };
 
@@ -57,8 +81,15 @@ const createInnerTRPCContext = ({ auth }: AuthContext) => {
 export const createTRPCContext = async (opts: CreateNextContextOptions) => {
     const { req, res } = opts;
     const { userId, orgSlug, organization } = getAuth(req);
+    let identity: userIdentity | undefined | null;
     const user = userId ? await clerkClient.users.getUser(userId) : undefined;
-    return createInnerTRPCContext({ auth: getAuth(opts.req) });
+    return createInnerTRPCContext({
+        session: {
+            clerkUser: user,
+            userId,
+            identity,
+        },
+    });
 };
 
 /**
@@ -76,14 +107,20 @@ const t = initTRPC.context<typeof createTRPCContext>().create({
     },
 });
 
-const isAuthed = t.middleware(({ next, ctx }) => {
-    if (!ctx.auth.userId) {
-        throw new TRPCError({ code: "UNAUTHORIZED" });
+const isAuthed = t.middleware(async ({ next, ctx }) => {
+    const { identity } = ctx.session;
+
+    if (!identity) {
+        throw new TRPCError({
+            code: "UNAUTHORIZED",
+            message: "no identity in db",
+        });
     }
 
     return next({
         ctx: {
-            auth: ctx.auth,
+            session: { ...ctx.session, identity },
+            db: ctx.db!,
         },
     });
 });

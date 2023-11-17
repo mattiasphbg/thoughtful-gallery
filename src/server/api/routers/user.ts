@@ -6,16 +6,16 @@ const getOneInputSchema = z.object({
 
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
 
-export const user = createTRPCRouter({
+export const userIdentity = createTRPCRouter({
     getAll: publicProcedure.query(({ ctx }) => {
-        const users = ctx.db.user.findMany();
+        const users = ctx.db.userIdentity.findMany();
         // Validate the response using the Zod schema
         // zDataChecker.parse(items);
 
         return users;
     }),
     getOneIName: publicProcedure.query(async ({ ctx, input }) => {
-        const user = await ctx.db.user.findFirst({
+        const user = await ctx.db.userIdentity.findFirst({
             where: {
                 name: input,
             },

@@ -12,12 +12,16 @@ generator client {
 }
 
 
-model User {
+model userIdentity {
   id       Int      @id @default(autoincrement())
   name     String
   email    String
   jobTitle String
-  photo    String?  @default("https://res.cloudinary.com/dxhfq1g84/image/upload/v1698164979/thoughtful-gallery/noImage_byy3zm.jpg")
+  imageUrl    String?  @default("https://res.cloudinary.com/dxhfq1g84/image/upload/v1698164979/thoughtful-gallery/noImage_byy3zm.jpg")
+  globalAdmin Boolean? @default(false)
+  clerkId String? 
+  createdAt                DateTime                  @default(now())
+  updatedAt                DateTime                  @updatedAt
   posts    Post[]
   profile  Profile?
   role Role
@@ -61,7 +65,7 @@ model Profile {
   id       Int    @id @default(autoincrement())
   biograpy String // Intentional typo!
   userId   Int    @unique
-  user     User   @relation(fields: [userId], references: [id])
+  user     userIdentity   @relation(fields: [userId], references: [id])
 }
 
 model Post {
@@ -72,7 +76,7 @@ model Post {
   imageUrl      String
   content    String     @db.VarChar(1500)
   published  Boolean    @default(false)
-  author     User?       @relation(fields: [authorId], references: [id])
+  author     userIdentity?       @relation(fields: [authorId], references: [id])
   authorId   Int
   createdAt  DateTime   @default(now())
 }
@@ -117,7 +121,7 @@ model Artwork {
   
   @@map(name: "artworks_categories")
   
-  artist      User?   @relation(fields: [artistId], references: [id])
+  artist      userIdentity?   @relation(fields: [artistId], references: [id])
   artistId    Int?
   
 }
