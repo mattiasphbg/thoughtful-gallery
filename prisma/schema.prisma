@@ -1,96 +1,84 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
+generator client {
+  provider = "prisma-client-js"
+}
 
 datasource db {
-    provider     = "mysql"
-    url          = env("DATABASE_URL")
-    relationMode = "prisma"
+  provider     = "mysql"
+  url          = env("DATABASE_URL")
+  relationMode = "prisma"
 }
-
-generator client {
-    provider = "prisma-client-js"
-}
-
 
 model userIdentity {
-  id       Int      @id @default(autoincrement())
-  name     String
-  email    String
-  jobTitle String
-  imageUrl    String?  @default("https://res.cloudinary.com/dxhfq1g84/image/upload/v1698164979/thoughtful-gallery/noImage_byy3zm.jpg")
-  globalAdmin Boolean? @default(false)
-  clerkId String? 
-  createdAt                DateTime                  @default(now())
-  updatedAt                DateTime                  @updatedAt
-  posts    Post[]
-  profile  Profile?
-  role Role
-  artworks Artwork[]
+  id          Int       @id @default(autoincrement())
+  name        String
+  email       String
+  jobTitle    String
+  imageUrl    String?   @default("https://res.cloudinary.com/dxhfq1g84/image/upload/v1698164979/thoughtful-gallery/noImage_byy3zm.jpg")
+  globalAdmin Boolean?  @default(false)
+  clerkId     String?
+  createdAt   DateTime?  @default(now())
+  updatedAt   DateTime?  @updatedAt
+  role        Role       @default(USER)
+  posts       Post[]
+  profile     Profile?
+  artworks    Artwork[]
 }
-
 enum Role {
-  ADMIN
   USER
+  ADMIN
   EDITOR
 }
 
-
 model feedback {
-  id Int @id @default(autoincrement())
-  name String
-  email String
-  message String @db.Text
-  createdAt DateTime @default(now()) @db.DateTime(3)
-
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String
+  message   String   @db.Text
+  createdAt DateTime @default(now())
 }
-
 
 model Exhibit {
-  id Int @id @default(autoincrement())
-  title String
-  subTitle String?
-  Description String 
-  image String?
-  date DateTime?
-  location String
-  categories Category[]
-  period String?
-  Events String?
-  Historical String @db.VarChar(500)
+  id          Int        @id @default(autoincrement())
+  title       String
+  subTitle    String?
+  Description String
+  image       String?
+  date        DateTime?
+  location    String
+  period      String?
+  Events      String?
+  Historical  String     @db.VarChar(500)
+  categories  Category[]
 }
 
-
-
 model Profile {
-  id       Int    @id @default(autoincrement())
-  biograpy String // Intentional typo!
-  userId   Int    @unique
-  user     userIdentity   @relation(fields: [userId], references: [id])
+  id       Int          @id @default(autoincrement())
+  biograpy String
+  userId   Int          @unique
+  user     userIdentity @relation(fields: [userId], references: [id])
 }
 
 model Post {
-  id         Int        @id @default(autoincrement())
-  slug       String     @unique // A URL-friendly version of the title
-  title      String
-  description String    @db.VarChar(100)
-  imageUrl      String
-  content    String     @db.VarChar(1500)
-  published  Boolean    @default(false)
-  author     userIdentity?       @relation(fields: [authorId], references: [id])
-  authorId   Int
-  createdAt  DateTime   @default(now())
+  id          Int           @id @default(autoincrement())
+  title       String
+  published   Boolean       @default(false)
+  content     String        @db.VarChar(1500)
+  authorId    Int
+  createdAt   DateTime      @default(now())
+  slug        String        @unique
+  description String        @db.VarChar(100)
+  imageUrl    String
+  author      userIdentity? @relation(fields: [authorId], references: [id])
 }
 
 model Category {
-  id    Int    @id @default(autoincrement())
-  name  String @db.VarChar(100)
+  id       Int       @id @default(autoincrement())
+  name     String    @unique @db.VarChar(100)
   Exhibits Exhibit[]
-
-  @@unique([name])
 }
 
 model Country {
-  id          Int          @id @default(autoincrement())
+  id          Int       @id @default(autoincrement())
   name        String
   population  Int
   capital     String
@@ -98,49 +86,60 @@ model Country {
   language    String
   flagImage   String
   description String
-  
   histories   History[]
   items       Item[]
-  
 }
+
 model History {
-  id          Int     @id @default(autoincrement())
-  eventDate   DateTime
+  id               Int      @id @default(autoincrement())
+  eventDate        DateTime
   eventDescription String
-  timeline    String // or DateTime, based on your chosen representation
-  
-  country     Country @relation(fields: [countryId], references: [id])
-  countryId   Int
+  timeline         String
+  countryId        Int
+  country          Country  @relation(fields: [countryId], references: [id])
 }
 
 model Artwork {
-  id          Int     @id @default(autoincrement())
+  id          Int           @id @default(autoincrement())
   title       String
   description String
   imageUrl    String
-  
-  @@map(name: "artworks_categories")
-  
-  artist      userIdentity?   @relation(fields: [artistId], references: [id])
   artistId    Int?
-  
+  artist      userIdentity? @relation(fields: [artistId], references: [id])
+
+  @@map("artworks_categories")
 }
 
 model Artifact {
-  id          Int     @id @default(autoincrement())
+  id          Int    @id @default(autoincrement())
   name        String
   description String
   imageUrl    String
-
 }
 
-
-
 model Item {
-  id          Int     @id @default(autoincrement())
+  id          Int       @id @default(autoincrement())
   name        String
   description String
   image       String
-
   countries   Country[]
 }
+
+model CategoryToExhibit {
+  A Int
+  B Int
+
+  @@unique([A, B], map: "_CategoryToExhibit_AB_unique")
+  @@index([B], map: "_CategoryToExhibit_B_index")
+  @@map("_CategoryToExhibit")
+}
+
+model CountryToItem {
+  A Int
+  B Int
+
+  @@unique([A, B], map: "_CountryToItem_AB_unique")
+  @@index([B], map: "_CountryToItem_B_index")
+  @@map("_CountryToItem")
+}
+
