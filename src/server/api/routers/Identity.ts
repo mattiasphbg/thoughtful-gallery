@@ -4,7 +4,11 @@ const getOneInputSchema = z.object({
     name: z.string(),
 });
 
-import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
+import {
+    createTRPCRouter,
+    publicProcedure,
+    protectedProcedure,
+} from "~/server/api/trpc";
 
 export const userIdentity = createTRPCRouter({
     getAll: publicProcedure.query(({ ctx }) => {
@@ -14,7 +18,7 @@ export const userIdentity = createTRPCRouter({
 
         return users;
     }),
-    getOneIName: publicProcedure.query(async ({ ctx, input }) => {
+    getOneIName: protectedProcedure.query(async ({ ctx, input }) => {
         const user = await ctx.db.userIdentity.findFirst({
             where: {
                 name: input,

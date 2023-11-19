@@ -1,4 +1,4 @@
-import { UserProfile } from "@clerk/nextjs";
+import { UserProfile, useUser } from "@clerk/nextjs";
 
 import type { ReactElement } from "react";
 import NestedLayout from "../../components/nested-layout";
@@ -6,11 +6,17 @@ import type { NextPageWithLayout } from "../_app";
 
 import RootLayout from "~/components/rootLayot";
 
+// import { api } from "~/utils/api";
+
 const Page: NextPageWithLayout = () => {
+    const { user } = useUser();
+
     return (
         <>
             <div className="flex  items-center justify-center">
                 <UserProfile />
+
+                {user?.primaryEmailAddress?.toString()}
             </div>
         </>
     );

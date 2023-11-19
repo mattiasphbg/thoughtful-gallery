@@ -14,6 +14,7 @@ export const appRouter = createTRPCRouter({
     allItems: item.getAll,
     AllPost: post.allPost,
     AllUser: userIdentity.getAll,
+    OneUser: userIdentity.getOneIName,
     feedbackCreate: feedback.add,
 });
 
