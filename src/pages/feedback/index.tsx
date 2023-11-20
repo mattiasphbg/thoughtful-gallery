@@ -17,8 +17,8 @@ const schema = z.object({
 });
 
 const Page: NextPageWithLayout = () => {
-    const { data } = api.AllUser.useQuery();
-    const { mutate, isLoading, isSuccess } = api.feedbackCreate.useMutation();
+    const { data } = api.identity.getAll.useQuery();
+    const { mutate, isLoading, isSuccess } = api.feedback.add.useMutation();
 
     const onSubmit = () => {
         try {

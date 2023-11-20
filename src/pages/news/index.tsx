@@ -9,7 +9,7 @@ import Image from "next/image";
 import { api } from "~/utils/api";
 
 const Page: NextPageWithLayout = () => {
-    const { data, error, isLoading } = api.AllPost.useQuery();
+    const { data, error, isLoading } = api.posts.allPost.useQuery();
     console.log(typeof data);
     // Add an if statement to check if the data has been fetched
     if (isLoading) {

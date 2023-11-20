@@ -7,7 +7,7 @@ import Image from "next/image";
 import { api } from "~/utils/api";
 
 const Page: NextPageWithLayout = () => {
-    const { data } = api.allItems.useQuery();
+    const { data } = api.items.getAll.useQuery();
     return (
         <>
             <section className="flex flex-col justify-between">

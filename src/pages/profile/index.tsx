@@ -6,17 +6,18 @@ import type { NextPageWithLayout } from "../_app";
 
 import RootLayout from "~/components/rootLayot";
 
-// import { api } from "~/utils/api";
+import { api } from "~/utils/api";
 
 const Page: NextPageWithLayout = () => {
     const { user } = useUser();
+    // const { data } = api.identity.getUserIdentity.useQuery();
 
     return (
         <>
             <div className="flex  items-center justify-center">
                 <UserProfile />
 
-                {user?.primaryEmailAddress?.toString()}
+                {/* {user?.primaryEmailAddress?.toString()} */}
             </div>
         </>
     );

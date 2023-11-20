@@ -35,4 +35,8 @@ export const userIdentity = createTRPCRouter({
 
         return user;
     }),
+    // eslint-disable-next-line @typescript-eslint/require-await
+    getUserIdentity: protectedProcedure.query(async ({ ctx }) => {
+        return ctx.session?.identity;
+    }),
 });

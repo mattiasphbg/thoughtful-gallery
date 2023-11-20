@@ -8,7 +8,7 @@ import Image from "next/image";
 import { api } from "~/utils/api";
 
 const Page: NextPageWithLayout = () => {
-    const { data } = api.AllPost.useQuery();
+    const { data } = api.posts.allPost.useQuery();
     return (
         <>
             <main className="flex-1">

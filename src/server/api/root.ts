@@ -11,11 +11,10 @@ import { createTRPCRouter } from "~/server/api/trpc";
  * All routers added in /api/routers should be manually added here.
  */
 export const appRouter = createTRPCRouter({
-    allItems: item.getAll,
-    AllPost: post.allPost,
-    AllUser: userIdentity.getAll,
-    OneUser: userIdentity.getOneIName,
-    feedbackCreate: feedback.add,
+    items: item,
+    posts: post,
+    identity: userIdentity,
+    feedback: feedback,
 });
 
 // export type definition of API
