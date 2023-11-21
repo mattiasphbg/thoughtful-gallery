@@ -8,23 +8,14 @@
  */
 import { initTRPC, TRPCError } from "@trpc/server";
 import { type CreateNextContextOptions } from "@trpc/server/adapters/next";
+
 import { clerkClient } from "@clerk/nextjs";
-import superjson from "superjson";
-
-import { db } from "~/server/db";
-
-import { PrismaClient, userIdentity } from "@prisma/client";
-
 import { getAuth, User } from "@clerk/nextjs/server";
 
-import type {
-    SignedInAuthObject,
-    SignedOutAuthObject,
-} from "@clerk/nextjs/api";
+import { userIdentity } from "@prisma/client";
 
-interface AuthContext {
-    auth: SignedInAuthObject | SignedOutAuthObject;
-}
+import { db } from "~/server/db";
+import superjson from "superjson";
 
 type CreateContextOptions = {
     session: {
@@ -52,12 +43,8 @@ type CreateContextOptions = {
  *
  * @see https://create.t3.gg/en/usage/trpc#-serverapitrpcts
  */
-const createInnerTRPCContext = (
-    // { auth }: AuthContext,
-    _opt: CreateContextOptions,
-) => {
+const createInnerTRPCContext = (_opt: CreateContextOptions) => {
     return {
-        // auth,
         db,
         session: _opt.session,
     };
@@ -76,7 +63,7 @@ export const createTRPCContext = async (opts: CreateNextContextOptions) => {
     const user = userId ? await clerkClient.users.getUser(userId) : undefined;
     let identity: userIdentity | undefined | null = null;
     if (userId) {
-        const id = parseInt(userId, 10); // Convert userId to a number
+        const id = parseInt(userId, 10);
         if (!isNaN(id)) {
             identity = await db.userIdentity.findUnique({
                 where: { id },
