@@ -61,9 +61,12 @@ export const createTRPCContext = async (opts: CreateNextContextOptions) => {
     const { userId } = getAuth(req);
 
     const user = userId ? await clerkClient.users.getUser(userId) : undefined;
+
     let identity: userIdentity | undefined | null = null;
+
     if (userId) {
         const id = parseInt(userId, 10);
+
         if (!isNaN(id)) {
             identity = await db.userIdentity.findUnique({
                 where: { id },
