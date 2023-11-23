@@ -12,7 +12,7 @@ model userIdentity {
   id          Int       @id @default(autoincrement())
   name        String
   email       String
-  jobTitle    String
+  jobTitle    String?
   imageUrl    String?   @default("https://res.cloudinary.com/dxhfq1g84/image/upload/v1698164979/thoughtful-gallery/noImage_byy3zm.jpg")
   globalAdmin Boolean?  @default(false)
   clerkId     String?
