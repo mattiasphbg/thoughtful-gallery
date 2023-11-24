@@ -63,28 +63,26 @@ export const createTRPCContext = async (opts: CreateNextContextOptions) => {
     const user = userId ? await clerkClient.users.getUser(userId) : undefined;
 
     let identity: userIdentity | undefined | null = null;
-
+    console.log("hello you", user);
     if (userId) {
-        console.log("Here", userId);
         identity = await db.userIdentity.findFirst({
             where: { clerkId: userId },
         });
 
         if (identity === null) {
-            const defaultFullName = "Default FullName";
-            const defaultEmail = "default@example.com";
+            const defaultFullName = `${user?.firstName}`;
+            const defaultEmail = `${user?.emailAddresses[0]?.emailAddress}`;
+            const defaultImage = `${user?.imageUrl}`;
 
             identity = await db.userIdentity.create({
                 data: {
-                    name: defaultFullName, // Replace with actual name from user object
-                    email: defaultEmail, // Replace with actual email from user object
-                    jobTitle: null, // Set jobTitle to null for now
-                    imageUrl: null, // Set imageUrl to null for now
-                    globalAdmin: null, // Set globalAdmin to null for now
-                    clerkId: userId, // Assign the userId obtained from the session
-                    createdAt: new Date(), // Set createdAt to the current date
-                    updatedAt: new Date(), // Set updatedAt to the current date
-                    role: "USER", // Provide a default role or obtain the role from the user object
+                    name: defaultFullName,
+                    email: defaultEmail,
+                    imageUrl: defaultImage,
+                    clerkId: userId,
+                    createdAt: new Date(),
+                    updatedAt: new Date(),
+                    role: "USER",
                 },
             });
         }
