@@ -20,14 +20,14 @@ const Page: NextPageWithLayout = () => {
                     <Avatar className="h-24 w-24">
                         <AvatarImage
                             alt="User profile avatar"
-                            src="/placeholder-avatar.jpg"
+                            src={`${data?.imageUrl}`}
                         />
                         <AvatarFallback>UP</AvatarFallback>
                     </Avatar>
                     <div className="space-y-1">
-                        <h1 className="text-2xl font-bold">Username</h1>
+                        <h1 className="text-2xl font-bold">{data?.name}</h1>
                         <p className="text-sm text-zinc-500 dark:text-zinc-400">
-                            Member since 2023
+                            Member since {data?.updatedAt?.toDateString()}
                         </p>
                     </div>
                 </div>

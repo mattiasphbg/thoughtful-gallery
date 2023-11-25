@@ -63,7 +63,7 @@ export const createTRPCContext = async (opts: CreateNextContextOptions) => {
     const user = userId ? await clerkClient.users.getUser(userId) : undefined;
 
     let identity: userIdentity | undefined | null = null;
-    console.log("hello you", user);
+
     if (userId) {
         identity = await db.userIdentity.findFirst({
             where: { clerkId: userId },
