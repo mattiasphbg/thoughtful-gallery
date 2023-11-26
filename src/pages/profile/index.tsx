@@ -22,7 +22,7 @@ const Page: NextPageWithLayout = () => {
                             alt="User profile avatar"
                             src={`${data?.imageUrl}`}
                         />
-                        <AvatarFallback>UP</AvatarFallback>
+                        <AvatarFallback>{data?.name}</AvatarFallback>
                     </Avatar>
                     <div className="space-y-1">
                         <h1 className="text-2xl font-bold">{data?.name}</h1>
@@ -35,8 +35,7 @@ const Page: NextPageWithLayout = () => {
                     <div className="space-y-1">
                         <h2 className="text-xl font-bold">Bio</h2>
                         <p className="text-sm text-zinc-500 dark:text-zinc-400">
-                            This is a user bio. It contains a brief summary
-                            about the user profile.
+                            {data?.userBio}
                         </p>
                     </div>
                     <div className="space-y-1">
@@ -45,9 +44,6 @@ const Page: NextPageWithLayout = () => {
                         </h2>
                         <p className="text-sm text-zinc-500 dark:text-zinc-400">
                             {data?.email}
-                        </p>
-                        <p className="text-sm text-zinc-500 dark:text-zinc-400">
-                            +1 234 567 890
                         </p>
                     </div>
                 </div>
