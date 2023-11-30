@@ -1,9 +1,21 @@
 import { useState, type ReactElement } from "react";
 import type { NextPageWithLayout } from "../_app";
+import RootLayout from "~/components/rootLayot";
 import NestedLayout from "../../components/nested-layout";
 
 import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";
-import RootLayout from "~/components/rootLayot";
+import { Button } from "~/components/ui/button";
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogFooter,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+} from "~/components/ui/dialog";
+import { Label } from "~/components/ui/label";
+import { Textarea } from "~/components/ui/textarea";
 
 import { api } from "~/utils/api";
 
@@ -12,7 +24,7 @@ const Page: NextPageWithLayout = () => {
     const { mutate } = api.identity.updateUserIdentityBio.useMutation();
 
     const [updatedBio, setUpdatedBio] = useState("");
-    // Define a function to handle bio update
+
     const handleBioUpdate = () => {
         try {
             if (!data) {
@@ -24,12 +36,8 @@ const Page: NextPageWithLayout = () => {
                 id: data?.id,
                 userBio: updatedBio,
             });
-
-            console.log("User bio updated:", updatedUserBioData);
-            // Consider how to handle the success scenario, for example, updating local state or displaying a success message
         } catch (error) {
             console.error("Error updating user bio:", error);
-            // Consider how to handle the error scenario, for example, displaying an error message to the user
         }
     };
 
@@ -67,18 +75,41 @@ const Page: NextPageWithLayout = () => {
                         </p>
                     </div>
                     <div className="space-y-1">
-                        <h2 className="text-xl font-bold">
-                            Update Information
-                        </h2>
-                        <form onSubmit={handleBioUpdate}>
-                            <input
-                                type="text"
-                                value={updatedBio}
-                                onChange={(e) => setUpdatedBio(e.target.value)}
-                                placeholder="Enter new bio"
-                            />
-                            <button type="submit">Update Bio</button>
-                        </form>
+                        <h2 className="text-xl font-bold"></h2>
+
+                        <Dialog>
+                            <DialogTrigger asChild>
+                                <Button variant="outline">Edit Profile</Button>
+                            </DialogTrigger>
+                            <DialogContent className="sm:max-w-[425px]">
+                                <DialogHeader>
+                                    <DialogTitle>Edit profile</DialogTitle>
+                                    <DialogDescription>
+                                        Make changes to your profile here. Click
+                                        save when youre done.
+                                    </DialogDescription>
+                                </DialogHeader>
+                                <Label>Bio </Label>
+                                <div className="grid gap-4 py-4">
+                                    <form onSubmit={handleBioUpdate}>
+                                        <Textarea
+                                            placeholder="Enter new bio"
+                                            className="mb-5 resize-none "
+                                            value={updatedBio}
+                                            onChange={(e) =>
+                                                setUpdatedBio(e.target.value)
+                                            }
+                                        />
+
+                                        <DialogFooter>
+                                            <Button type="submit">
+                                                Save changes
+                                            </Button>
+                                        </DialogFooter>
+                                    </form>
+                                </div>
+                            </DialogContent>
+                        </Dialog>
                     </div>
                 </div>
             </div>
