@@ -16,8 +16,6 @@ import {
 export const userIdentity = createTRPCRouter({
     getAll: publicProcedure.query(({ ctx }) => {
         const users = ctx.db.userIdentity.findMany();
-        // Validate the response using the Zod schema
-        // zDataChecker.parse(items);
 
         return users;
     }),
@@ -29,12 +27,8 @@ export const userIdentity = createTRPCRouter({
         });
 
         if (!user) {
-            // Handle the case where the item is not found
             throw new Error("Item not found");
         }
-
-        // Validate the response using the Zod schema if needed
-        // itemResponseSchema.parse(item);
 
         return user;
     }),
@@ -45,7 +39,7 @@ export const userIdentity = createTRPCRouter({
     updateUserIdentityBio: protectedProcedure
         .input(
             z.object({
-                id: z.string().uuid().optional(),
+                id: z.number().optional(),
                 userBio: z.string().min(1),
             }),
         )
@@ -55,7 +49,7 @@ export const userIdentity = createTRPCRouter({
 
             const updatedUser = ctx.db.userIdentity.update({
                 where: {
-                    id: input.id !== undefined ? parseInt(input.id) : undefined,
+                    id: input.id,
                 },
                 data: {
                     userBio: input.userBio,
