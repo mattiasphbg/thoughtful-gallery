@@ -112,7 +112,10 @@ const Page: NextPageWithLayout = () => {
                                             {letterCount}/2500
                                         </div>
                                         <DialogFooter>
-                                            <Button type="submit">
+                                            <Button
+                                                type="submit"
+                                                disabled={letterCount > 2500}
+                                            >
                                                 Save changes
                                             </Button>
                                         </DialogFooter>
