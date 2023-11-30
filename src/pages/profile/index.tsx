@@ -1,4 +1,4 @@
-import { useState, type ReactElement } from "react";
+import { useState, type ReactElement, ChangeEvent } from "react";
 import type { NextPageWithLayout } from "../_app";
 import RootLayout from "~/components/rootLayot";
 import NestedLayout from "../../components/nested-layout";
@@ -24,6 +24,16 @@ const Page: NextPageWithLayout = () => {
     const { mutate } = api.identity.updateUserIdentityBio.useMutation();
 
     const [updatedBio, setUpdatedBio] = useState("");
+    const [letterCount, setLetterCount] = useState<number>(0);
+
+    const handleBioChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        const bio: string = e.target.value;
+        setUpdatedBio(bio);
+        // Update letter count
+        const letters: string[] = bio.split("");
+        const filteredLetters: string[] = letters.filter((l) => /\w/.test(l));
+        setLetterCount(filteredLetters.length);
+    };
 
     const handleBioUpdate = () => {
         try {
@@ -96,11 +106,11 @@ const Page: NextPageWithLayout = () => {
                                             placeholder="Enter new bio"
                                             className="mb-5 resize-none "
                                             value={updatedBio}
-                                            onChange={(e) =>
-                                                setUpdatedBio(e.target.value)
-                                            }
+                                            onChange={handleBioChange}
                                         />
-
+                                        <div className="-mt-4 flex justify-end">
+                                            {letterCount}/2500
+                                        </div>
                                         <DialogFooter>
                                             <Button type="submit">
                                                 Save changes
