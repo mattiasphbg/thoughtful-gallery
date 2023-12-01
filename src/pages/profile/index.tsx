@@ -14,25 +14,50 @@ import {
     DialogTitle,
     DialogTrigger,
 } from "~/components/ui/dialog";
+import {
+    AlertDialog,
+    AlertDialogAction,
+    AlertDialogCancel,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle,
+    AlertDialogTrigger,
+} from "~/components/ui/alert-dialog";
+
 import { Label } from "~/components/ui/label";
 import { Textarea } from "~/components/ui/textarea";
-
+import { clerkClient } from "@clerk/nextjs";
 import { api } from "~/utils/api";
 
 const Page: NextPageWithLayout = () => {
     const { data } = api.identity.getUserIdentity.useQuery();
     const { mutate } = api.identity.updateUserIdentityBio.useMutation();
-
     const [updatedBio, setUpdatedBio] = useState("");
     const [letterCount, setLetterCount] = useState<number>(0);
 
     const handleBioChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
         const bio: string = e.target.value;
         setUpdatedBio(bio);
-        // Update letter count
+
         const letters: string[] = bio.split("");
         const filteredLetters: string[] = letters.filter((l) => /\w/.test(l));
         setLetterCount(filteredLetters.length);
+    };
+
+    const handleDeleteAccount = () => {
+        try {
+            if (data?.clerkId) {
+                const deletedUser = clerkClient.users.deleteUser(data?.clerkId);
+                // Proceed with the rest of the logic related to the deleteUser operation
+            } else {
+                console.error("Invalid data object or clerkId is missing");
+            }
+        } catch (error) {
+            console.error("Error deleting user:", error);
+            // Handle the error or notify the user as appropriate
+        }
     };
 
     const handleBioUpdate = () => {
@@ -123,6 +148,37 @@ const Page: NextPageWithLayout = () => {
                                 </div>
                             </DialogContent>
                         </Dialog>
+                    </div>
+                    <div className="space-y-1">
+                        <AlertDialog>
+                            <AlertDialogTrigger asChild>
+                                <Button variant="outline">
+                                    Delete account
+                                </Button>
+                            </AlertDialogTrigger>
+                            <AlertDialogContent>
+                                <AlertDialogHeader>
+                                    <AlertDialogTitle>
+                                        Are you absolutely sure?
+                                    </AlertDialogTitle>
+                                    <AlertDialogDescription>
+                                        This action cannot be undone. This will
+                                        permanently delete your account and
+                                        remove your data from our servers.
+                                    </AlertDialogDescription>
+                                </AlertDialogHeader>
+                                <AlertDialogFooter>
+                                    <AlertDialogCancel>
+                                        Cancel
+                                    </AlertDialogCancel>
+                                    <AlertDialogAction
+                                        onClick={handleDeleteAccount}
+                                    >
+                                        Yes, delete account
+                                    </AlertDialogAction>
+                                </AlertDialogFooter>
+                            </AlertDialogContent>
+                        </AlertDialog>
                     </div>
                 </div>
             </div>

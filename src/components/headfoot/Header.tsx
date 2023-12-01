@@ -42,7 +42,7 @@ const Header: React.FC = () => {
                             {link.title}
                         </Link>
                     ))}
-                    <UserButton />
+                    <UserButton userProfileUrl="/profile" />
                 </nav>
             </header>
         </>
@@ -50,4 +50,3 @@ const Header: React.FC = () => {
 };
 
 export default Header;
-
