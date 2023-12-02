@@ -30,6 +30,7 @@ import { Label } from "~/components/ui/label";
 import { Textarea } from "~/components/ui/textarea";
 import { clerkClient } from "@clerk/nextjs";
 import { api } from "~/utils/api";
+import { string } from "zod";
 
 const Page: NextPageWithLayout = () => {
     const { data } = api.identity.getUserIdentity.useQuery();
@@ -46,18 +47,28 @@ const Page: NextPageWithLayout = () => {
         setLetterCount(filteredLetters.length);
     };
 
-    const handleDeleteAccount = () => {
+    const handleDeleteAccount = async () => {
         try {
-            if (data?.clerkId) {
-                const deletedUser = clerkClient.users.deleteUser(data?.clerkId);
-                // Proceed with the rest of the logic related to the deleteUser operation
+            const userId: string | null | undefined =
+                api.identity.getUserIdentity.useQuery().data?.clerkId;
+            if (userId) {
+                const deletedUser = await clerkClient.users.deleteUser(userId);
+                console.log("User successfully deleted:", deletedUser);
+                // Proceed with any additional logic related to the deleted user
             } else {
-                console.error("Invalid data object or clerkId is missing");
+                console.error("Invalid or missing userId");
+                // Handle the scenario where userId is null or undefined
             }
         } catch (error) {
-            console.error("Error deleting user:", error);
+            console.error("Error handling delete operation:", error);
             // Handle the error or notify the user as appropriate
         }
+    };
+    const handleDeleteAccountClick = () => {
+        handleDeleteAccount().catch((error) => {
+            console.error("Error handling delete operation:", error);
+            // Handle the error or notify the user as appropriate
+        });
     };
 
     const handleBioUpdate = () => {
@@ -172,7 +183,7 @@ const Page: NextPageWithLayout = () => {
                                         Cancel
                                     </AlertDialogCancel>
                                     <AlertDialogAction
-                                        onClick={handleDeleteAccount}
+                                        onClick={handleDeleteAccountClick}
                                     >
                                         Yes, delete account
                                     </AlertDialogAction>
