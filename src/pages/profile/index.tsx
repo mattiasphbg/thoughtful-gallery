@@ -1,4 +1,4 @@
-import { useState, type ReactElement, ChangeEvent } from "react";
+import { useState, useEffect, type ReactElement, ChangeEvent } from "react";
 import type { NextPageWithLayout } from "../_app";
 import RootLayout from "~/components/rootLayot";
 import NestedLayout from "../../components/nested-layout";
@@ -28,15 +28,31 @@ import {
 
 import { Label } from "~/components/ui/label";
 import { Textarea } from "~/components/ui/textarea";
-import { clerkClient } from "@clerk/nextjs";
+import { clerkClient, useUser } from "@clerk/nextjs";
 import { api } from "~/utils/api";
-import { string } from "zod";
 
 const Page: NextPageWithLayout = () => {
     const { data } = api.identity.getUserIdentity.useQuery();
     const { mutate } = api.identity.updateUserIdentityBio.useMutation();
     const [updatedBio, setUpdatedBio] = useState("");
     const [letterCount, setLetterCount] = useState<number>(0);
+
+    const { user } = useUser();
+
+    if (!user) return null;
+    const updateUser = async () => {
+        const t = user.id;
+        const tt = await clerkClient.users.deleteUser(t);
+    };
+
+    // const deleteUser = async () => {
+    //     try {
+    //         await cl.delete();
+    //         console.log("User deleted successfully");
+    //     } catch (error) {
+    //         console.error("Error deleting user:", error);
+    //     }
+    // };
 
     const handleBioChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
         const bio: string = e.target.value;
@@ -45,30 +61,6 @@ const Page: NextPageWithLayout = () => {
         const letters: string[] = bio.split("");
         const filteredLetters: string[] = letters.filter((l) => /\w/.test(l));
         setLetterCount(filteredLetters.length);
-    };
-
-    const handleDeleteAccount = async () => {
-        try {
-            const userId: string | null | undefined =
-                api.identity.getUserIdentity.useQuery().data?.clerkId;
-            if (userId) {
-                const deletedUser = await clerkClient.users.deleteUser(userId);
-                console.log("User successfully deleted:", deletedUser);
-                // Proceed with any additional logic related to the deleted user
-            } else {
-                console.error("Invalid or missing userId");
-                // Handle the scenario where userId is null or undefined
-            }
-        } catch (error) {
-            console.error("Error handling delete operation:", error);
-            // Handle the error or notify the user as appropriate
-        }
-    };
-    const handleDeleteAccountClick = () => {
-        handleDeleteAccount().catch((error) => {
-            console.error("Error handling delete operation:", error);
-            // Handle the error or notify the user as appropriate
-        });
     };
 
     const handleBioUpdate = () => {
@@ -183,7 +175,9 @@ const Page: NextPageWithLayout = () => {
                                         Cancel
                                     </AlertDialogCancel>
                                     <AlertDialogAction
-                                        onClick={handleDeleteAccountClick}
+                                        onClick={() =>
+                                            console.log(updateUser())
+                                        }
                                     >
                                         Yes, delete account
                                     </AlertDialogAction>
