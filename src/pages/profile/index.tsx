@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-misused-promises */
 import { useState, useEffect, type ReactElement, ChangeEvent } from "react";
 import type { NextPageWithLayout } from "../_app";
 import RootLayout from "~/components/rootLayot";
@@ -29,14 +30,10 @@ import {
 import { Label } from "~/components/ui/label";
 import { Textarea } from "~/components/ui/textarea";
 import { api } from "~/utils/api";
-import { clerkClient, auth } from "@clerk/nextjs";
-
-import { getServerSideProps } from "~/schemas/clearkRm";
 
 const Page: NextPageWithLayout = () => {
     interface ErrorResponse {
         error: string;
-        // Other properties if present in the error response
     }
 
     const { data } = api.identity.getUserIdentity.useQuery();
@@ -52,7 +49,7 @@ const Page: NextPageWithLayout = () => {
         setLetterCount(filteredLetters.length);
     };
 
-    const [error, setError] = useState<null | string>(null); // Define the type of the state
+    const [error, setError] = useState<null | string>(null);
 
     const deleteUser = async () => {
         try {
@@ -61,7 +58,7 @@ const Page: NextPageWithLayout = () => {
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ userId: "user_id_to_delete" }), // Replace with the actual user ID
+                body: JSON.stringify({ userId: "user_id_to_delete" }),
             });
 
             if (response.ok) {
@@ -186,9 +183,7 @@ const Page: NextPageWithLayout = () => {
                                     <AlertDialogCancel>
                                         Cancel
                                     </AlertDialogCancel>
-                                    <AlertDialogAction
-                                        onClick={() => deleteUser}
-                                    >
+                                    <AlertDialogAction onClick={deleteUser}>
                                         Yes, delete account
                                     </AlertDialogAction>
                                 </AlertDialogFooter>
