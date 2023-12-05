@@ -28,32 +28,21 @@ import {
 
 import { Label } from "~/components/ui/label";
 import { Textarea } from "~/components/ui/textarea";
-import { clerkClient, useUser } from "@clerk/nextjs";
 import { api } from "~/utils/api";
+import { clerkClient, auth } from "@clerk/nextjs";
+
+import { getServerSideProps } from "~/schemas/clearkRm";
 
 const Page: NextPageWithLayout = () => {
+    interface ErrorResponse {
+        error: string;
+        // Other properties if present in the error response
+    }
+
     const { data } = api.identity.getUserIdentity.useQuery();
     const { mutate } = api.identity.updateUserIdentityBio.useMutation();
     const [updatedBio, setUpdatedBio] = useState("");
     const [letterCount, setLetterCount] = useState<number>(0);
-
-    const { user } = useUser();
-
-    if (!user) return null;
-    const updateUser = async () => {
-        const t = user.id;
-        const tt = await clerkClient.users.deleteUser(t);
-    };
-
-    // const deleteUser = async () => {
-    //     try {
-    //         await cl.delete();
-    //         console.log("User deleted successfully");
-    //     } catch (error) {
-    //         console.error("Error deleting user:", error);
-    //     }
-    // };
-
     const handleBioChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
         const bio: string = e.target.value;
         setUpdatedBio(bio);
@@ -61,6 +50,29 @@ const Page: NextPageWithLayout = () => {
         const letters: string[] = bio.split("");
         const filteredLetters: string[] = letters.filter((l) => /\w/.test(l));
         setLetterCount(filteredLetters.length);
+    };
+
+    const [error, setError] = useState<null | string>(null); // Define the type of the state
+
+    const deleteUser = async () => {
+        try {
+            const response = await fetch("/api/private", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ userId: "user_id_to_delete" }), // Replace with the actual user ID
+            });
+
+            if (response.ok) {
+                // User deleted successfully
+            } else {
+                const errorData = (await response.json()) as ErrorResponse;
+            }
+        } catch (error) {
+            console.error("Error deleting user:", error);
+            setError("Error deleting user");
+        }
     };
 
     const handleBioUpdate = () => {
@@ -175,9 +187,7 @@ const Page: NextPageWithLayout = () => {
                                         Cancel
                                     </AlertDialogCancel>
                                     <AlertDialogAction
-                                        onClick={() =>
-                                            console.log(updateUser())
-                                        }
+                                        onClick={() => deleteUser}
                                     >
                                         Yes, delete account
                                     </AlertDialogAction>
