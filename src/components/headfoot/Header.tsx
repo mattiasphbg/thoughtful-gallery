@@ -9,6 +9,11 @@ const Header: React.FC = () => {
         { id: 4, href: "/feedback", title: "Contact" },
     ];
 
+    const isLocalhost = process.env.NODE_ENV === "development";
+    const url = isLocalhost
+        ? "http://localhost:3000/profile"
+        : "https://www.thoughtful-gallery.com/profile";
+
     return (
         <>
             <header className="flex h-14 items-center justify-between px-4 lg:px-6">
@@ -42,7 +47,10 @@ const Header: React.FC = () => {
                             {link.title}
                         </Link>
                     ))}
-                    <UserButton userProfileUrl="/profile" />
+                    <UserButton
+                        userProfileMode="navigation"
+                        userProfileUrl={url}
+                    />
                 </nav>
             </header>
         </>

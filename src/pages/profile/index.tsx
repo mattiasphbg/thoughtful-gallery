@@ -62,7 +62,6 @@ const Page: NextPageWithLayout = () => {
             });
 
             if (response.ok) {
-                // User deleted successfully
             } else {
                 const errorData = (await response.json()) as ErrorResponse;
             }
