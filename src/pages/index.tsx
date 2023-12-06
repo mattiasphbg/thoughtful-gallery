@@ -31,7 +31,7 @@ const Page: NextPageWithLayout = () => {
                                 </p>
                             </div>
                             <Link
-                                className=" inline-flex h-10 w-96 items-center justify-center rounded-md bg-white px-8 text-sm font-medium text-black shadow transition-colors hover:bg-gray-200 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-black"
+                                className=" inline-flex h-10  w-80 items-center justify-center rounded-md bg-white px-8 text-sm font-medium text-black shadow transition-colors hover:bg-gray-200 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-black"
                                 href="#"
                             >
                                 Start Exploring

@@ -9,16 +9,16 @@ datasource db {
 }
 
 model userIdentity {
-  id          Int       @id @default(autoincrement())
+  id          Int        @id @default(autoincrement())
   name        String
   email       String
   jobTitle    String?
-  imageUrl    String?   @default("https://res.cloudinary.com/dxhfq1g84/image/upload/v1698164979/thoughtful-gallery/noImage_byy3zm.jpg")
-  globalAdmin Boolean?  @default(false)
+  imageUrl    String?    @default("https://res.cloudinary.com/dxhfq1g84/image/upload/v1698164979/thoughtful-gallery/noImage_byy3zm.jpg")
+  globalAdmin Boolean?   @default(false)
   clerkId     String?
   createdAt   DateTime?  @default(now())
   updatedAt   DateTime?  
-  userBio String?        @db.VarChar(2500)
+  userBio     String?    @db.VarChar(2500)
   role        Role       @default(USER)
   posts       Post[]
   profile     Profile?
