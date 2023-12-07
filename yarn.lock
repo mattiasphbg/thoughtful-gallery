@@ -1162,10 +1162,10 @@
   dependencies:
     react-ssr-prepass "^1.5.0"
 
-"@trpc/react-query@^10.37.1":
-  version "10.43.0"
-  resolved "https://registry.npmjs.org/@trpc/react-query/-/react-query-10.43.0.tgz#e2e9c3e78e55051ac3d45a34cf4c966835cd338f"
-  integrity sha512-5+pBnnV9QqnwpO5Li9T60hXHylV1USEjFkRjrnd7mJul/t2dKxs5ouv+YDRnOJ36oD9wDki5lBGk2sOgFrzGUw==
+"@trpc/react-query@^10.43.3":
+  version "10.44.1"
+  resolved "https://registry.yarnpkg.com/@trpc/react-query/-/react-query-10.44.1.tgz#917122d551ff38f735fec83323ba7e45c0ebbe79"
+  integrity sha512-Sgi/v0YtdunOXjBRi7om9gILGkOCFYXPzn5KqLuEHiZw5dr5w4qGHFwCeMAvndZxmwfblJrl1tk2AznmsVu8MA==
 
 "@trpc/server@^10.40.0":
   version "10.43.0"
