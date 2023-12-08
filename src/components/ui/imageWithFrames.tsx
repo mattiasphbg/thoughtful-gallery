@@ -14,7 +14,7 @@ import getUuid from "uuid-by-string";
 
 const GOLDENRATIO = 1.61803398875;
 
-function ImageWithFrames({ images }) {
+function ImageWithFrames({}) {
     return (
         <>
             <Canvas dpr={[1, 1.5]} camera={{ fov: 70, position: [0, 2, 15] }}>
