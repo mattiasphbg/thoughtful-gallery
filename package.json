@@ -37,7 +37,7 @@
         "@trpc/client": "^10.40.0",
         "@trpc/next": "^10.37.1",
         "@trpc/react-query": "^10.43.3",
-        "@trpc/server": "^10.40.0",
+        "@trpc/server": "^10.43.6",
         "@types/three": "^0.157.2",
         "@vercel/analytics": "^1.1.1",
         "class-variance-authority": "^0.7.0",
