@@ -38,7 +38,7 @@
         "@trpc/next": "^10.37.1",
         "@trpc/react-query": "^10.43.3",
         "@trpc/server": "^10.40.0",
-        "@types/three": "^0.157.2",
+        "@types/three": "^0.159.0",
         "@vercel/analytics": "^1.1.1",
         "class-variance-authority": "^0.7.0",
         "clsx": "^2.0.0",

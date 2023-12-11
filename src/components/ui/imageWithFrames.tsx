@@ -8,6 +8,7 @@ import {
     Text,
     Environment,
 } from "@react-three/drei";
+
 import * as React from "react";
 import { Group } from "three";
 
@@ -120,9 +121,20 @@ interface FrameProps {
     c?: THREE.Color;
 }
 
+class CustomMaterial extends THREE.MeshStandardMaterial {
+    zoom?: number;
+
+    constructor(parameters?: THREE.MeshStandardMaterialParameters) {
+        super(parameters);
+    }
+}
+
 function Frame({ url, c = new THREE.Color(), ...props }: FrameProps) {
-    const image = useRef<THREE.Mesh>();
-    const frame = useRef<THREE.Mesh>();
+    const image = useRef<THREE.Mesh<THREE.BufferGeometry, CustomMaterial>>(
+        null!,
+    );
+
+    const frame = useRef<THREE.Mesh>(null!);
     const [, params] = useRoute("/item/:id");
     const [hovered, setHovered] = useState(false);
     const [rnd] = useState(() => Math.random());
