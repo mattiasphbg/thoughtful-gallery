@@ -121,6 +121,10 @@ interface FrameProps {
     c?: THREE.Color;
 }
 
+interface CustomMaterialColor extends THREE.Material {
+    color?: THREE.Color;
+}
+
 class CustomMaterial extends THREE.MeshStandardMaterial {
     zoom?: number;
 
@@ -134,7 +138,9 @@ function Frame({ url, c = new THREE.Color(), ...props }: FrameProps) {
         null!,
     );
 
-    const frame = useRef<THREE.Mesh>(null!);
+    const frame = useRef<THREE.Mesh<THREE.BufferGeometry, CustomMaterial>>(
+        null!,
+    );
     const [, params] = useRoute("/item/:id");
     const [hovered, setHovered] = useState(false);
     const [rnd] = useState(() => Math.random());
