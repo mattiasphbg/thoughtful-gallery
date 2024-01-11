@@ -10,7 +10,11 @@ const images = [
     // Front
     { position: [0, 0, 1.5], rotation: [0, 0, 0], url: pexel(1103970) },
     // Back
-    { position: [-0.8, 0, -0.6], rotation: [0, 0, 0], url: pexel(416430) },
+    {
+        position: [-0.8, 0, -0.6],
+        rotation: [0, 0, 0],
+        url: "https://res.cloudinary.com/dxhfq1g84/image/upload/v1704991635/thoughtful-gallery/vvqlf7lnldeazenos3tt.jpg",
+    },
     { position: [0.8, 0, -0.6], rotation: [0, 0, 0], url: pexel(310452) },
     // // Left
     {
