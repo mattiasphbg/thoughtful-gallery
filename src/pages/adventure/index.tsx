@@ -13,7 +13,7 @@ const images = [
     {
         position: [-0.8, 0, -0.6],
         rotation: [0, 0, 0],
-        url: "https://res.cloudinary.com/dxhfq1g84/image/upload/v1704991635/thoughtful-gallery/vvqlf7lnldeazenos3tt.jpg",
+        url: "https://res.cloudinary.com/dxhfq1g84/image/upload/v1704992053/thoughtful-gallery/hmkdkssu9fdpxzk1fxrr.jpg",
     },
     { position: [0.8, 0, -0.6], rotation: [0, 0, 0], url: pexel(310452) },
     // // Left
