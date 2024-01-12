@@ -8,6 +8,7 @@ import {
     Text,
     Environment,
 } from "@react-three/drei";
+import { useRouter } from "next/router";
 
 import * as React from "react";
 import { Group } from "three";
@@ -15,6 +16,7 @@ import { Group } from "three";
 import { useRoute, useLocation } from "wouter";
 import { easing } from "maath";
 import getUuid from "uuid-by-string";
+import Link from "next/link";
 
 const GOLDENRATIO = 1.61803398875;
 
@@ -119,6 +121,7 @@ function Frames({
 interface FrameProps {
     url: string;
     c?: THREE.Color;
+    // id?: string;
 }
 
 interface CustomMaterialColor extends THREE.Material {
@@ -134,6 +137,7 @@ class CustomMaterial extends THREE.MeshStandardMaterial {
 }
 
 function Frame({ url, c = new THREE.Color(), ...props }: FrameProps) {
+    const router = useRouter();
     const image = useRef<THREE.Mesh<THREE.BufferGeometry, CustomMaterial>>(
         null!,
     );
@@ -147,6 +151,12 @@ function Frame({ url, c = new THREE.Color(), ...props }: FrameProps) {
     const name = getUuid(url);
     const isActive = params?.id === name;
     useCursor(hovered);
+
+    const handleMeshClick = () => {
+        try {
+            router.push(`/item/${name}`).catch((r) => console.error("", r));
+        } catch (error) {}
+    };
 
     useFrame((state, dt) => {
         if (image.current) {
@@ -204,14 +214,17 @@ function Frame({ url, c = new THREE.Color(), ...props }: FrameProps) {
                     url={url}
                 />
             </mesh>
+
             <Text
                 maxWidth={0.1}
                 anchorX="left"
                 anchorY="top"
                 position={[0.55, GOLDENRATIO, 0]}
                 fontSize={0.025}
+                onClick={() => handleMeshClick()}
             >
                 {name.split("-").join(" ")}
+                {/* {id} */}
             </Text>
         </group>
     );
