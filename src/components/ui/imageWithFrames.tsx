@@ -16,7 +16,6 @@ import { Group } from "three";
 import { useRoute, useLocation } from "wouter";
 import { easing } from "maath";
 import getUuid from "uuid-by-string";
-import Link from "next/link";
 
 const GOLDENRATIO = 1.61803398875;
 
@@ -182,6 +181,18 @@ function Frame({ url, c = new THREE.Color(), ...props }: FrameProps) {
         );
     });
 
+    const [isHovered, setIsHovered] = useState(false);
+
+    const handlePointerOver = () => {
+        setIsHovered(true);
+    };
+
+    const handlePointerOut = () => {
+        setIsHovered(false);
+    };
+
+    const fontSize = isHovered ? 0.055 : 0.025;
+
     return (
         <group {...props}>
             <mesh
@@ -220,11 +231,12 @@ function Frame({ url, c = new THREE.Color(), ...props }: FrameProps) {
                 anchorX="left"
                 anchorY="top"
                 position={[0.55, GOLDENRATIO, 0]}
-                fontSize={0.025}
                 onClick={() => handleMeshClick()}
+                onPointerOver={handlePointerOver}
+                onPointerOut={handlePointerOut}
+                fontSize={fontSize}
             >
                 {name.split("-").join(" ")}
-                {/* {id} */}
             </Text>
         </group>
     );
