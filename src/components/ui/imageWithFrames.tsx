@@ -153,7 +153,9 @@ function Frame({ url, c = new THREE.Color(), ...props }: FrameProps) {
 
     const handleMeshClick = () => {
         try {
-            router.push(`/item/${name}`).catch((r) => console.error("", r));
+            router
+                .push(`/adventure/${name}`)
+                .catch((r) => console.error("", r));
         } catch (error) {}
     };
 
