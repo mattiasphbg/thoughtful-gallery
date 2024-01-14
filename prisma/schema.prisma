@@ -75,6 +75,7 @@ model Post {
 model Category {
   id       Int       @id @default(autoincrement())
   name     String    @unique @db.VarChar(100)
+  img      String? 
   Exhibits Exhibit[]
 }
 
