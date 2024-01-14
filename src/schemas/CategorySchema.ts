@@ -9,5 +9,6 @@ export const CategorySchema = z.object({
             "https://res.cloudinary.com/dxhfq1g84/image/upload/v1698164979/thoughtful-gallery/noImage_byy3zm.jpg",
         )
         .optional(),
+    position: z.array(z.unknown()).optional(),
+    rotation: z.array(z.unknown()).optional(),
 });
-
